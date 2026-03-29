@@ -837,7 +837,7 @@
 </div>
 
 <script>
-  const SHEET_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw08KG3LXy0eAz7DcQ4jyB__ryE3xfRDk7OuS6lUaYcIwbkHV0pWPnOUkETACDHXQ1C/exec';
   const MEAL_OPTIONS    = ['Chicken', 'Beef', 'Vegetarian', "Children's meal"];
   const DIETARY_OPTIONS = ['Vegetarian', 'Vegan', 'Kosher', 'Halal', 'Gluten-free', 'None'];
 
@@ -987,7 +987,7 @@
     btn.disabled = true; btn.textContent = 'Sending…';
     const data = collectData();
     try {
-      await fetch(https://docs.google.com/spreadsheets/d/11dLyMJLrNfad3ES7WwbDEN8dek-gsFwwim6SxNtCvQw/edit?gid=0#gid=0, {
+      await fetch(SHEET_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
