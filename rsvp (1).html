@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jodee & Nick — RSVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f2eb;
+    --blush: #e8c4b8;
+    --rose: #c9897a;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --deep: #2c1f1a;
+    --muted: #7a6258;
+    --card: rgba(252,248,242,0.96);
+    --border: #e2d4c8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1008;
+    color: var(--deep);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Fixed SVG theatre background */
+  .theatre-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .theatre-bg svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  /* Overlay to darken background for readability */
+  .theatre-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,6,2,0.55) 0%,
+      rgba(10,6,2,0.4) 40%,
+      rgba(10,6,2,0.55) 100%
+    );
+    z-index: 1;
+  }
+
+  .page {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  .ornament {
+    color: var(--gold-light);
+    font-size: 18px;
+    letter-spacing: 0.35em;
+    display: block;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(212,176,122,0.5);
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(50px, 11vw, 76px);
+    line-height: 1.0;
+    color: var(--cream);
+    text-shadow: 0 2px 30px rgba(184,150,90,0.4), 0 0 60px rgba(184,150,90,0.15);
+    letter-spacing: 0.02em;
+  }
+  .header h1 em { font-style: italic; color: var(--gold-light); }
+  .ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.75em;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1.2;
+  }
+  .header .subtitle {
+    margin-top: 18px;
+    color: rgba(247,242,235,0.8);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.7;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0;
+    color: var(--gold-light);
+    opacity: 0.7;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .divider span { font-size: 16px; }
+
+  /* Form card */
+  .form-card {
+    background: var(--card);
+    border: 1px solid rgba(184,150,90,0.5);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    box-shadow:
+      0 4px 60px rgba(0,0,0,0.5),
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 0 0 1px rgba(184,150,90,0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Gold inset trim — sits 10px inside the card edges */
+  .form-card::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(184,150,90,0.45);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Second, thinner gold line — sits 14px inside */
+  .form-card::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 0.5px solid rgba(184,150,90,0.25);
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Keep form content above the pseudo-element trim lines */
+  .form-card > * { position: relative; z-index: 1; }
+
+  @media (max-width: 520px) { .form-card { padding: 24px 18px; } .form-card::before { inset: 8px; } .form-card::after { inset: 12px; } }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .field { margin-bottom: 24px; }
+  label.field-label {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    color: var(--deep);
+    margin-bottom: 8px;
+  }
+  .req { color: var(--rose); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  select {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: white;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    color: var(--deep);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(201,137,122,0.12);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8965a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .attend-group { display: flex; gap: 12px; }
+  .attend-btn {
+    flex: 1;
+    padding: 14px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    background: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .attend-btn:hover { border-color: var(--blush); color: var(--deep); }
+  .attend-btn.sel-yes { border-color: var(--rose); background: rgba(201,137,122,0.08); color: var(--rose); font-weight: 500; }
+  .attend-btn.sel-no  { border-color: var(--muted); background: rgba(122,98,88,0.06); color: var(--muted); }
+
+  .help-text { font-size: 13px; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .hidden { display: none !important; }
+
+  .guest-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .guest-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--gold); white-space: nowrap; width: 60px; flex-shrink: 0; }
+  .guest-name-row input { margin: 0; }
+
+  .dietary-card {
+    background: rgba(232,196,184,0.1);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 22px 22px 14px;
+    margin-bottom: 16px;
+  }
+  .dietary-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--rose);
+    margin-bottom: 14px;
+    display: block;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .card-field { margin-bottom: 16px; }
+  .card-field .field-label { font-size: 12px; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 8px; }
+
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .check-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 10px; border-radius: 3px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .check-item:hover { background: rgba(232,196,184,0.25); }
+  .check-item input[type="checkbox"] {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 2px;
+    appearance: none; -webkit-appearance: none;
+    background: white; cursor: pointer; flex-shrink: 0;
+    transition: all 0.15s; position: relative;
+  }
+  .check-item input:checked { background: var(--rose); border-color: var(--rose); }
+  .check-item input:checked::after {
+    content: '';
+    position: absolute; left: 4px; top: 1px;
+    width: 5px; height: 9px;
+    border: 2px solid white; border-top: none; border-left: none;
+    transform: rotate(45deg);
+  }
+  .check-item span { font-size: 15px; color: var(--deep); }
+
+  .submit-wrap { margin-top: 36px; text-align: center; }
+  .btn-submit {
+    background: var(--deep); color: var(--cream); border: none;
+    padding: 15px 52px;
+    font-family: 'Cormorant Garamond', serif; font-size: 15px;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; border-radius: 2px; transition: background 0.25s, transform 0.15s;
+  }
+  .btn-submit:hover { background: var(--rose); transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .field-error { font-size: 13px; color: var(--rose); margin-top: 5px; display: none; }
+  .is-invalid { border-color: var(--rose) !important; }
+
+  .success-screen { text-align: center; padding: 60px 20px; }
+  .success-screen .icon { font-size: 52px; display: block; margin-bottom: 20px; }
+  .success-screen h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 40px; color: var(--deep); margin-bottom: 12px; }
+  .success-screen p { color: var(--muted); font-style: italic; }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(247,242,235,0.5);
+    font-size: 13px;
+    font-style: italic;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     STATE THEATRE / QT HOTEL VECTOR BACKGROUND
+     Art deco facade: arched windows, columns, ornate
+     details inspired by Market St, Sydney
+═══════════════════════════════════════════════════ -->
+<div class="theatre-bg">
+<svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d0804"/>
+      <stop offset="100%" stop-color="#1e1108"/>
+    </linearGradient>
+    <linearGradient id="stone-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a1f12"/>
+      <stop offset="100%" stop-color="#1a1008"/>
+    </linearGradient>
+    <linearGradient id="window-glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8a050" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#d4b060" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#a06820" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="window-glow2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b89040" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#906020" stop-opacity="0.3"/>
+    </linearGradient>
+    <radialGradient id="lamp-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#d4b060" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#c89040" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#b87020" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow-filter">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="1440" height="900" fill="url(#sky)"/>
+
+  <!-- Stars -->
+  <g fill="#d4b060" opacity="0.3">
+    <circle cx="80" cy="40" r="1"/><circle cx="200" cy="20" r="0.8"/><circle cx="350" cy="55" r="1.2"/>
+    <circle cx="500" cy="15" r="0.7"/><circle cx="650" cy="45" r="1"/><circle cx="800" cy="25" r="0.9"/>
+    <circle cx="950" cy="50" r="1.1"/><circle cx="1100" cy="30" r="0.8"/><circle cx="1250" cy="10" r="1"/>
+    <circle cx="1380" cy="40" r="0.7"/><circle cx="140" cy="70" r="0.6"/><circle cx="420" cy="80" r="0.9"/>
+    <circle cx="700" cy="65" r="0.7"/><circle cx="1000" cy="75" r="1"/><circle cx="1300" cy="60" r="0.8"/>
+  </g>
+
+  <!-- ═══ FAR BACKGROUND: Old Sydney buildings (silhouettes) ═══ -->
+  <!-- Victorian terrace row - left -->
+  <g fill="#1e1508" opacity="0.8">
+    <rect x="0" y="300" width="60" height="200"/>
+    <polygon points="0,300 30,260 60,300"/>
+    <rect x="15" y="320" width="12" height="20" fill="#c8a050" opacity="0.3"/>
+    <rect x="35" y="320" width="12" height="20" fill="#c8a050" opacity="0.3"/>
+
+    <rect x="65" y="310" width="55" height="190"/>
+    <polygon points="65,310 92,275 120,310"/>
+    <rect x="75" y="330" width="12" height="20" fill="#c8a050" opacity="0.25"/>
+    <rect x="95" y="330" width="12" height="20" fill="#c8a050" opacity="0.25"/>
+
+    <rect x="125" y="290" width="65" height="210"/>
+    <polygon points="125,290 157,248 190,290"/>
+    <!-- Chimney -->
+    <rect x="140" y="265" width="8" height="25"/>
+    <rect x="160" y="270" width="8" height="20"/>
+  </g>
+
+  <!-- Victorian terrace row - right -->
+  <g fill="#1e1508" opacity="0.8">
+    <rect x="1280" y="305" width="60" height="195"/>
+    <polygon points="1280,305 1310,265 1340,305"/>
+    <rect x="1290" y="325" width="12" height="20" fill="#c8a050" opacity="0.3"/>
+    <rect x="1312" y="325" width="12" height="20" fill="#c8a050" opacity="0.3"/>
+
+    <rect x="1345" y="315" width="55" height="185"/>
+    <polygon points="1345,315 1372,278 1400,315"/>
+    <rect x="1355" y="335" width="12" height="20" fill="#c8a050" opacity="0.25"/>
+    <rect x="1375" y="335" width="12" height="20" fill="#c8a050" opacity="0.25"/>
+
+    <rect x="1405" y="295" width="35" height="205"/>
+    <polygon points="1405,295 1422,260 1440,295"/>
+  </g>
+
+  <!-- ═══ MAIN STATE THEATRE FACADE ═══ -->
+  <!-- Base structure -->
+  <rect x="190" y="200" width="1060" height="700" fill="#1c1208"/>
+
+  <!-- Ground floor plinth -->
+  <rect x="190" y="780" width="1060" height="30" fill="#241808"/>
+  <rect x="190" y="755" width="1060" height="28" fill="#201408"/>
+
+  <!-- ── COLUMNS (State Theatre has grand columns) ── -->
+  <!-- Left set of columns -->
+  <g fill="#241a0c" stroke="#3a2a14" stroke-width="0.5">
+    <rect x="210" y="350" width="28" height="420"/>
+    <rect x="206" y="345" width="36" height="12"/> <!-- cap -->
+    <rect x="206" y="762" width="36" height="12"/> <!-- base -->
+
+    <rect x="258" y="350" width="28" height="420"/>
+    <rect x="254" y="345" width="36" height="12"/>
+    <rect x="254" y="762" width="36" height="12"/>
+
+    <rect x="306" y="350" width="28" height="420"/>
+    <rect x="302" y="345" width="36" height="12"/>
+    <rect x="302" y="762" width="36" height="12"/>
+  </g>
+
+  <!-- Right set of columns -->
+  <g fill="#241a0c" stroke="#3a2a14" stroke-width="0.5">
+    <rect x="1202" y="350" width="28" height="420"/>
+    <rect x="1198" y="345" width="36" height="12"/>
+    <rect x="1198" y="762" width="36" height="12"/>
+
+    <rect x="1150" y="350" width="28" height="420"/>
+    <rect x="1146" y="345" width="36" height="12"/>
+    <rect x="1146" y="762" width="36" height="12"/>
+
+    <rect x="1098" y="350" width="28" height="420"/>
+    <rect x="1094" y="345" width="36" height="12"/>
+    <rect x="1094" y="762" width="36" height="12"/>
+  </g>
+
+  <!-- ── CORNICE / ENTABLATURE ── -->
+  <rect x="190" y="330" width="1060" height="18" fill="#2c1e0e"/>
+  <rect x="190" y="322" width="1060" height="10" fill="#281a0c"/>
+  <rect x="190" y="314" width="1060" height="10" fill="#241808"/>
+  <!-- Dentils along cornice -->
+  <g fill="#201408">
+    <rect x="210" y="316" width="6" height="8"/>
+    <rect x="225" y="316" width="6" height="8"/>
+    <rect x="240" y="316" width="6" height="8"/>
+    <rect x="255" y="316" width="6" height="8"/>
+    <rect x="270" y="316" width="6" height="8"/>
+    <rect x="285" y="316" width="6" height="8"/>
+    <rect x="300" y="316" width="6" height="8"/>
+    <rect x="315" y="316" width="6" height="8"/>
+  </g>
+
+  <!-- Gold line detail on cornice -->
+  <rect x="190" y="330" width="1060" height="1.5" fill="#b8965a" opacity="0.4"/>
+  <rect x="190" y="313" width="1060" height="1" fill="#b8965a" opacity="0.25"/>
+
+  <!-- ── PEDIMENT / ROOFLINE ── -->
+  <polygon points="190,314 720,210 1250,314" fill="#1e1409" stroke="#2e2010" stroke-width="1"/>
+  <polygon points="200,314 720,215 1240,314" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.4"/>
+  <!-- Pediment ornament -->
+  <circle cx="720" cy="230" r="20" fill="#201408" stroke="#b8965a" stroke-width="0.5" opacity="0.6"/>
+  <circle cx="720" cy="230" r="12" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.5"/>
+  <circle cx="720" cy="230" r="5" fill="#b8965a" opacity="0.4"/>
+  <!-- Raking cornice lines -->
+  <line x1="200" y1="314" x2="720" y2="215" stroke="#b8965a" stroke-width="0.5" opacity="0.3"/>
+  <line x1="1240" y1="314" x2="720" y2="215" stroke="#b8965a" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- ── UPPER FLOOR: Arch windows (large) ── -->
+  <!-- Helper: arched window group repeated across facade -->
+  <!-- Window 1 -->
+  <g filter="url(#soft-glow)">
+    <path d="M355,348 L355,490 L415,490 L415,348 Q385,310 355,348Z" fill="url(#window-glow)" opacity="0.7"/>
+  </g>
+  <path d="M355,348 L355,490 L415,490 L415,348 Q385,310 355,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <!-- Window tracery -->
+  <line x1="385" y1="316" x2="385" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="355" y1="420" x2="415" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <path d="M365,348 Q385,326 405,348" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Window 2 -->
+  <g filter="url(#soft-glow)">
+    <path d="M445,348 L445,490 L505,490 L505,348 Q475,310 445,348Z" fill="url(#window-glow)" opacity="0.65"/>
+  </g>
+  <path d="M445,348 L445,490 L505,490 L505,348 Q475,310 445,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="475" y1="316" x2="475" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="445" y1="420" x2="505" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <path d="M455,348 Q475,326 495,348" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Window 3 -->
+  <g filter="url(#soft-glow)">
+    <path d="M535,348 L535,490 L595,490 L595,348 Q565,310 535,348Z" fill="url(#window-glow)" opacity="0.7"/>
+  </g>
+  <path d="M535,348 L535,490 L595,490 L595,348 Q565,310 535,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="565" y1="316" x2="565" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="535" y1="420" x2="595" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <path d="M545,348 Q565,326 585,348" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Centre grand arch window (State Theatre's iconic arch) -->
+  <g filter="url(#soft-glow)">
+    <path d="M635,320 L635,490 L805,490 L805,320 Q720,240 635,320Z" fill="url(#window-glow)" opacity="0.6"/>
+  </g>
+  <path d="M635,320 L635,490 L805,490 L805,320 Q720,240 635,320Z" fill="none" stroke="#b8965a" stroke-width="1" opacity="0.7"/>
+  <!-- Inner arch frame -->
+  <path d="M645,325 L645,488 L795,488 L795,325 Q720,248 645,325Z" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.4"/>
+  <!-- Tracery in grand arch -->
+  <line x1="720" y1="248" x2="720" y2="490" stroke="#b8965a" stroke-width="0.5" opacity="0.35"/>
+  <path d="M658,335 Q720,270 782,335" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.35"/>
+  <path d="M668,360 Q720,308 772,360" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.3"/>
+  <line x1="635" y1="420" x2="805" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.35"/>
+  <!-- Rose window detail at top of grand arch -->
+  <circle cx="720" cy="292" r="22" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.5"/>
+  <circle cx="720" cy="292" r="14" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <circle cx="720" cy="292" r="6" fill="#b8965a" opacity="0.25"/>
+  <!-- Rose window spokes -->
+  <line x1="720" y1="270" x2="720" y2="314" stroke="#b8965a" stroke-width="0.4" opacity="0.35"/>
+  <line x1="698" y1="292" x2="742" y2="292" stroke="#b8965a" stroke-width="0.4" opacity="0.35"/>
+  <line x1="704" y1="276" x2="736" y2="308" stroke="#b8965a" stroke-width="0.4" opacity="0.3"/>
+  <line x1="736" y1="276" x2="704" y2="308" stroke="#b8965a" stroke-width="0.4" opacity="0.3"/>
+
+  <!-- Window 5 -->
+  <g filter="url(#soft-glow)">
+    <path d="M835,348 L835,490 L895,490 L895,348 Q865,310 835,348Z" fill="url(#window-glow)" opacity="0.65"/>
+  </g>
+  <path d="M835,348 L835,490 L895,490 L895,348 Q865,310 835,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="865" y1="316" x2="865" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="835" y1="420" x2="895" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Window 6 -->
+  <g filter="url(#soft-glow)">
+    <path d="M925,348 L925,490 L985,490 L985,348 Q955,310 925,348Z" fill="url(#window-glow2)" opacity="0.6"/>
+  </g>
+  <path d="M925,348 L925,490 L985,490 L985,348 Q955,310 925,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="955" y1="316" x2="955" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="925" y1="420" x2="985" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Window 7 -->
+  <g filter="url(#soft-glow)">
+    <path d="M1015,348 L1015,490 L1075,490 L1075,348 Q1045,310 1015,348Z" fill="url(#window-glow)" opacity="0.65"/>
+  </g>
+  <path d="M1015,348 L1015,490 L1075,490 L1075,348 Q1045,310 1015,348Z" fill="none" stroke="#b8965a" stroke-width="0.8" opacity="0.6"/>
+  <line x1="1045" y1="316" x2="1045" y2="490" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <line x1="1015" y1="420" x2="1075" y2="420" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- ── LOWER FLOOR WINDOWS ── -->
+  <!-- Row of rectangular windows with smaller arches -->
+  <g>
+    <!-- Win A -->
+    <g filter="url(#glow-filter)">
+      <path d="M235,530 L235,640 L295,640 L295,530 Q265,504 235,530Z" fill="url(#window-glow2)" opacity="0.55"/>
+    </g>
+    <path d="M235,530 L235,640 L295,640 L295,530 Q265,504 235,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="265" y1="510" x2="265" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win B -->
+    <g filter="url(#glow-filter)">
+      <path d="M325,530 L325,640 L385,640 L385,530 Q355,504 325,530Z" fill="url(#window-glow)" opacity="0.5"/>
+    </g>
+    <path d="M325,530 L325,640 L385,640 L385,530 Q355,504 325,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="355" y1="510" x2="355" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win C -->
+    <g filter="url(#glow-filter)">
+      <path d="M415,530 L415,640 L475,640 L475,530 Q445,504 415,530Z" fill="url(#window-glow2)" opacity="0.55"/>
+    </g>
+    <path d="M415,530 L415,640 L475,640 L475,530 Q445,504 415,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="445" y1="510" x2="445" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win D (left of centre) -->
+    <g filter="url(#glow-filter)">
+      <path d="M555,530 L555,640 L625,640 L625,530 Q590,500 555,530Z" fill="url(#window-glow)" opacity="0.55"/>
+    </g>
+    <path d="M555,530 L555,640 L625,640 L625,530 Q590,500 555,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="590" y1="506" x2="590" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- CENTRE GROUND ENTRANCE (grand) -->
+    <g filter="url(#soft-glow)">
+      <path d="M655,510 L655,700 L785,700 L785,510 Q720,455 655,510Z" fill="url(#window-glow)" opacity="0.45"/>
+    </g>
+    <path d="M655,510 L655,700 L785,700 L785,510 Q720,455 655,510Z" fill="none" stroke="#b8965a" stroke-width="1" opacity="0.6"/>
+    <path d="M665,515 L665,698 L775,698 L775,515 Q720,462 665,515Z" fill="none" stroke="#b8965a" stroke-width="0.5" opacity="0.35"/>
+    <line x1="720" y1="463" x2="720" y2="700" stroke="#b8965a" stroke-width="0.5" opacity="0.3"/>
+    <path d="M670,522 Q720,478 770,522" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.3"/>
+    <path d="M677,545 Q720,508 763,545" fill="none" stroke="#b8965a" stroke-width="0.3" opacity="0.25"/>
+    <!-- Entrance door panels -->
+    <rect x="665" y="610" width="26" height="88" fill="#b8965a" opacity="0.12" stroke="#b8965a" stroke-width="0.4"/>
+    <rect x="699" y="610" width="22" height="88" fill="#b8965a" opacity="0.08"/>
+    <rect x="729" y="610" width="26" height="88" fill="#b8965a" opacity="0.12" stroke="#b8965a" stroke-width="0.4"/>
+    <!-- Transom light above doors -->
+    <rect x="665" y="582" width="110" height="26" fill="#b8965a" opacity="0.1" stroke="#b8965a" stroke-width="0.3"/>
+
+    <!-- Win E (right of centre) -->
+    <g filter="url(#glow-filter)">
+      <path d="M815,530 L815,640 L885,640 L885,530 Q850,500 815,530Z" fill="url(#window-glow2)" opacity="0.55"/>
+    </g>
+    <path d="M815,530 L815,640 L885,640 L885,530 Q850,500 815,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="850" y1="506" x2="850" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win F -->
+    <g filter="url(#glow-filter)">
+      <path d="M965,530 L965,640 L1025,640 L1025,530 Q995,504 965,530Z" fill="url(#window-glow)" opacity="0.5"/>
+    </g>
+    <path d="M965,530 L965,640 L1025,640 L1025,530 Q995,504 965,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="995" y1="510" x2="995" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win G -->
+    <g filter="url(#glow-filter)">
+      <path d="M1055,530 L1055,640 L1115,640 L1115,530 Q1085,504 1055,530Z" fill="url(#window-glow2)" opacity="0.55"/>
+    </g>
+    <path d="M1055,530 L1055,640 L1115,640 L1115,530 Q1085,504 1055,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="1085" y1="510" x2="1085" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+
+    <!-- Win H -->
+    <g filter="url(#glow-filter)">
+      <path d="M1145,530 L1145,640 L1205,640 L1205,530 Q1175,504 1145,530Z" fill="url(#window-glow)" opacity="0.5"/>
+    </g>
+    <path d="M1145,530 L1145,640 L1205,640 L1205,530 Q1175,504 1145,530Z" fill="none" stroke="#b8965a" stroke-width="0.7" opacity="0.5"/>
+    <line x1="1175" y1="510" x2="1175" y2="640" stroke="#b8965a" stroke-width="0.3" opacity="0.35"/>
+  </g>
+
+  <!-- ── ORNAMENTAL DETAILS ── -->
+  <!-- Keystones on upper arches -->
+  <g fill="#b8965a" opacity="0.3">
+    <polygon points="380,315 385,308 390,315"/>
+    <polygon points="470,315 475,308 480,315"/>
+    <polygon points="560,315 565,308 570,315"/>
+    <polygon points="860,315 865,308 870,315"/>
+    <polygon points="950,315 955,308 960,315"/>
+    <polygon points="1040,315 1045,308 1050,315"/>
+  </g>
+
+  <!-- Decorative frieze band (horizontal) -->
+  <rect x="190" y="498" width="1060" height="8" fill="#241808"/>
+  <rect x="190" y="504" width="1060" height="3" fill="#b8965a" opacity="0.2"/>
+  <rect x="190" y="498" width="1060" height="1" fill="#b8965a" opacity="0.3"/>
+
+  <!-- Spandrel panels between upper arches (decorative relief) -->
+  <g opacity="0.2" stroke="#b8965a" stroke-width="0.4" fill="none">
+    <ellipse cx="430" cy="400" rx="15" ry="20"/>
+    <ellipse cx="520" cy="400" rx="15" ry="20"/>
+    <ellipse cx="620" cy="400" rx="15" ry="20"/>
+    <ellipse cx="820" cy="400" rx="15" ry="20"/>
+    <ellipse cx="910" cy="400" rx="15" ry="20"/>
+    <ellipse cx="1000" cy="400" rx="15" ry="20"/>
+  </g>
+
+  <!-- ── FLANKING TOWERS / PAVILIONS ── -->
+  <!-- Left tower -->
+  <rect x="190" y="200" width="140" height="580" fill="#1e1308"/>
+  <rect x="190" y="200" width="140" height="3" fill="#b8965a" opacity="0.3"/>
+  <!-- Left tower cap -->
+  <rect x="188" y="196" width="144" height="8" fill="#2a1c0c"/>
+  <polygon points="188,196 260,168 332,196" fill="#201408" stroke="#b8965a" stroke-width="0.5" opacity="0.5"/>
+  <!-- Left tower windows -->
+  <g opacity="0.6" filter="url(#glow-filter)">
+    <path d="M215,240 L215,290 L255,290 L255,240 Q235,218 215,240Z" fill="url(#window-glow2)"/>
+    <path d="M215,310 L215,360 L255,360 L255,310 Q235,288 215,310Z" fill="url(#window-glow)"/>
+  </g>
+  <path d="M215,240 L215,290 L255,290 L255,240 Q235,218 215,240Z" fill="none" stroke="#b8965a" stroke-width="0.6" opacity="0.6"/>
+  <path d="M215,310 L215,360 L255,360 L255,310 Q235,288 215,310Z" fill="none" stroke="#b8965a" stroke-width="0.6" opacity="0.6"/>
+
+  <!-- Right tower -->
+  <rect x="1110" y="200" width="140" height="580" fill="#1e1308"/>
+  <rect x="1110" y="200" width="140" height="3" fill="#b8965a" opacity="0.3"/>
+  <rect x="1108" y="196" width="144" height="8" fill="#2a1c0c"/>
+  <polygon points="1108,196 1180,168 1252,196" fill="#201408" stroke="#b8965a" stroke-width="0.5" opacity="0.5"/>
+  <g opacity="0.6" filter="url(#glow-filter)">
+    <path d="M1125,240 L1125,290 L1165,290 L1165,240 Q1145,218 1125,240Z" fill="url(#window-glow2)"/>
+    <path d="M1125,310 L1125,360 L1165,360 L1165,310 Q1145,288 1125,310Z" fill="url(#window-glow)"/>
+  </g>
+  <path d="M1125,240 L1125,290 L1165,290 L1165,240 Q1145,218 1125,240Z" fill="none" stroke="#b8965a" stroke-width="0.6" opacity="0.6"/>
+  <path d="M1125,310 L1125,360 L1165,360 L1165,310 Q1145,288 1125,310Z" fill="none" stroke="#b8965a" stroke-width="0.6" opacity="0.6"/>
+
+  <!-- ── STREET LAMPS ── -->
+  <g stroke="#b8965a" stroke-width="1" fill="none" opacity="0.7">
+    <!-- Left lamp -->
+    <line x1="170" y1="760" x2="170" y2="640"/>
+    <path d="M170,640 Q170,620 185,618"/>
+    <ellipse cx="190" cy="616" rx="8" ry="5" fill="#201408" stroke="#b8965a" stroke-width="0.8"/>
+    <ellipse cx="190" cy="612" rx="4" ry="3" fill="url(#lamp-glow)" opacity="0.9"/>
+    <!-- Right lamp -->
+    <line x1="1270" y1="760" x2="1270" y2="640"/>
+    <path d="M1270,640 Q1270,620 1255,618"/>
+    <ellipse cx="1250" cy="616" rx="8" ry="5" fill="#201408" stroke="#b8965a" stroke-width="0.8"/>
+    <ellipse cx="1250" cy="612" rx="4" ry="3" fill="url(#lamp-glow)" opacity="0.9"/>
+  </g>
+
+  <!-- ── FOREGROUND: Pavement / street level ── -->
+  <rect x="0" y="780" width="1440" height="120" fill="#120d06"/>
+  <rect x="0" y="776" width="1440" height="5" fill="#1a1208"/>
+  <!-- Pavement lines -->
+  <g stroke="#1e1508" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="800" x2="1440" y2="800"/>
+    <line x1="0" y1="830" x2="1440" y2="830"/>
+    <line x1="0" y1="860" x2="1440" y2="860"/>
+  </g>
+
+  <!-- Gold ground line -->
+  <rect x="0" y="776" width="1440" height="1" fill="#b8965a" opacity="0.25"/>
+
+  <!-- ── SIGN / MARQUEE (State Theatre style) ── -->
+  <rect x="560" y="700" width="320" height="55" rx="3" fill="#1a1008" stroke="#b8965a" stroke-width="0.8" opacity="0.8"/>
+  <rect x="565" y="705" width="310" height="45" rx="2" fill="none" stroke="#b8965a" stroke-width="0.4" opacity="0.4"/>
+  <!-- Marquee lights (small dots) -->
+  <g fill="#c8a050" opacity="0.5">
+    <circle cx="575" cy="727" r="2"/><circle cx="590" cy="727" r="2"/><circle cx="605" cy="727" r="2"/>
+    <circle cx="620" cy="727" r="2"/><circle cx="635" cy="727" r="2"/><circle cx="650" cy="727" r="2"/>
+    <circle cx="665" cy="727" r="2"/><circle cx="680" cy="727" r="2"/><circle cx="695" cy="727" r="2"/>
+    <circle cx="710" cy="727" r="2"/><circle cx="725" cy="727" r="2"/><circle cx="740" cy="727" r="2"/>
+    <circle cx="755" cy="727" r="2"/><circle cx="770" cy="727" r="2"/><circle cx="785" cy="727" r="2"/>
+    <circle cx="800" cy="727" r="2"/><circle cx="815" cy="727" r="2"/><circle cx="830" cy="727" r="2"/>
+    <circle cx="845" cy="727" r="2"/><circle cx="860" cy="727" r="2"/>
+  </g>
+
+</svg>
+</div>
+
+<div class="theatre-overlay"></div>
+
+<!-- ══════════════════════════════════════════
+     FORM
+══════════════════════════════════════════ -->
+<div class="page">
+
+  <header class="header">
+    <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+    <h1><em>Jodee</em><span class="ampersand">&</span><em>Nick</em></h1>
+    <p class="subtitle">
+      We're getting married &amp; we'd love you to be there.<br>
+      Please fill in this form so we know to expect you.
+    </p>
+  </header>
+
+  <div class="divider"><span>♡</span></div>
+
+  <div class="form-card">
+
+    <form id="rsvp-form" novalidate>
+
+      <div class="section-label">Your Details</div>
+
+      <div class="field">
+        <label class="field-label" for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="your@email.com">
+        <div class="field-error" id="err-email">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="fullname">Your Full Name <span class="req">*</span></label>
+        <input type="text" id="fullname" placeholder="e.g. Pam Beesly">
+        <div class="field-error" id="err-name">Please enter your full name.</div>
+      </div>
+
+      <div class="divider"><span>✦</span></div>
+      <div class="section-label">Will You Attend?</div>
+
+      <div class="field">
+        <div class="attend-group">
+          <button type="button" class="attend-btn" id="btn-yes" onclick="setAttending('Yes')">✓ &nbsp; Joyfully Accepts</button>
+          <button type="button" class="attend-btn" id="btn-no"  onclick="setAttending('No')">✗ &nbsp; Regretfully Declines</button>
+        </div>
+        <div class="field-error" id="err-attend">Please let us know if you'll be attending.</div>
+      </div>
+
+      <div class="field hidden" id="section-partysize">
+        <label class="field-label" for="partysize">How many guests in your party? <span class="req">*</span></label>
+        <select id="partysize" onchange="setPartySize(this.value)">
+          <option value="">— Select —</option>
+          <option value="1">Just me (1)</option>
+          <option value="2">2 guests</option>
+          <option value="3">3 guests</option>
+          <option value="4">4 guests</option>
+          <option value="5">5 guests</option>
+          <option value="6">6 guests</option>
+        </select>
+        <p class="help-text">Include yourself in the count.</p>
+      </div>
+
+      <div class="hidden" id="section-names">
+        <div class="section-label" style="margin-top:4px;">Guest Names</div>
+        <p class="help-text" style="margin-bottom:16px;">Enter the full name of each person attending.</p>
+        <div id="name-inputs"></div>
+      </div>
+
+      <div class="hidden" id="section-dietary">
+        <div class="divider"><span>✦</span></div>
+        <div class="section-label">Dining Preferences</div>
+        <p class="help-text" style="margin-bottom:20px;">Please complete the details for each guest in your party.</p>
+        <div id="dietary-cards"></div>
+      </div>
+
+      <div class="hidden" id="section-song">
+        <div class="divider"><span>✦</span></div>
+        <div class="section-label">On the Dance Floor</div>
+        <div class="field">
+          <label class="field-label" for="song">Song Request for the DJ 🎵</label>
+          <input type="text" id="song" placeholder="e.g. Dancing Queen – ABBA">
+          <p class="help-text">What song will get you on the dance floor? Leave blank if you're happy to be surprised!</p>
+        </div>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="submit-btn">Send My RSVP &nbsp;♡</button>
+      </div>
+
+    </form>
+
+    <div class="success-screen hidden" id="success-screen">
+      <span class="icon">🌸</span>
+      <h2>Thank you!</h2>
+      <p>Your RSVP has been received.<br>We can't wait to celebrate with you.</p>
+      <p style="margin-top:16px; font-size:14px; color:var(--gold);">♡ &nbsp; Jodee &amp; Nick &nbsp; ♡</p>
+    </div>
+
+  </div>
+
+  <div class="footer">Made with love for Jodee &amp; Nick's Wedding &nbsp;♡</div>
+</div>
+
+<script>
+  const SHEET_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+  const MEAL_OPTIONS    = ['Chicken', 'Beef', 'Vegetarian', "Children's meal"];
+  const DIETARY_OPTIONS = ['Vegetarian', 'Vegan', 'Kosher', 'Halal', 'Gluten-free', 'None'];
+
+  let attending = null;
+  let partySize = 0;
+
+  function show(id) { document.getElementById(id).classList.remove('hidden'); }
+  function hide(id) { document.getElementById(id).classList.add('hidden'); }
+
+  function setAttending(val) {
+    attending = val;
+    document.getElementById('err-attend').style.display = 'none';
+    document.getElementById('btn-yes').className = 'attend-btn' + (val === 'Yes' ? ' sel-yes' : '');
+    document.getElementById('btn-no').className  = 'attend-btn' + (val === 'No'  ? ' sel-no'  : '');
+    if (val === 'Yes') {
+      show('section-partysize');
+      show('section-song');
+    } else {
+      hide('section-partysize');
+      hide('section-names');
+      hide('section-dietary');
+      hide('section-song');
+      document.getElementById('partysize').value = '';
+      partySize = 0;
+    }
+  }
+
+  function setPartySize(val) {
+    partySize = parseInt(val) || 0;
+    if (partySize > 0) {
+      buildNameInputs(partySize);
+      show('section-names');
+      buildDietaryCards(partySize);
+      show('section-dietary');
+    } else {
+      hide('section-names');
+      hide('section-dietary');
+    }
+  }
+
+  function buildNameInputs(size) {
+    const wrap = document.getElementById('name-inputs');
+    wrap.innerHTML = '';
+    for (let i = 0; i < size; i++) {
+      const row = document.createElement('div');
+      row.className = 'guest-name-row';
+      const num = document.createElement('span');
+      num.className = 'guest-num';
+      num.textContent = i === 0 ? 'You' : `Guest ${i + 1}`;
+      const inp = document.createElement('input');
+      inp.type = 'text'; inp.id = `gname-${i}`;
+      inp.placeholder = i === 0 ? 'Your full name' : 'Full name';
+      if (i === 0) inp.value = document.getElementById('fullname').value.trim();
+      inp.addEventListener('input', () => {
+        const lbl = document.getElementById(`dlabel-${i}`);
+        if (lbl) lbl.textContent = inp.value.trim() || (i === 0 ? 'You' : `Guest ${i + 1}`);
+      });
+      row.appendChild(num); row.appendChild(inp);
+      wrap.appendChild(row);
+    }
+  }
+
+  document.getElementById('fullname').addEventListener('input', function () {
+    const g0 = document.getElementById('gname-0');
+    if (g0) {
+      g0.value = this.value.trim();
+      const lbl = document.getElementById('dlabel-0');
+      if (lbl) lbl.textContent = this.value.trim() || 'You';
+    }
+  });
+
+  function buildDietaryCards(size) {
+    const wrap = document.getElementById('dietary-cards');
+    wrap.innerHTML = '';
+    for (let i = 0; i < size; i++) {
+      const nameVal = document.getElementById(`gname-${i}`)?.value.trim() || (i === 0 ? 'You' : `Guest ${i + 1}`);
+      const card = document.createElement('div');
+      card.className = 'dietary-card';
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'dietary-card-name';
+      nameSpan.id = `dlabel-${i}`;
+      nameSpan.textContent = nameVal;
+      card.appendChild(nameSpan);
+
+      // Meal
+      const mealField = document.createElement('div');
+      mealField.className = 'card-field';
+      const mealLbl = document.createElement('label');
+      mealLbl.className = 'field-label';
+      mealLbl.setAttribute('for', `meal-${i}`);
+      mealLbl.textContent = 'MEAL PREFERENCE';
+      const mealSel = document.createElement('select');
+      mealSel.id = `meal-${i}`;
+      const defOpt = document.createElement('option');
+      defOpt.value = ''; defOpt.textContent = '— Select a meal —';
+      mealSel.appendChild(defOpt);
+      MEAL_OPTIONS.forEach(m => {
+        const o = document.createElement('option');
+        o.value = m; o.textContent = m; mealSel.appendChild(o);
+      });
+      mealField.appendChild(mealLbl); mealField.appendChild(mealSel);
+      card.appendChild(mealField);
+
+      // Dietary
+      const dietField = document.createElement('div');
+      dietField.className = 'card-field';
+      const dietLbl = document.createElement('label');
+      dietLbl.className = 'field-label';
+      dietLbl.textContent = 'DIETARY REQUIREMENTS';
+      dietField.appendChild(dietLbl);
+      const grid = document.createElement('div');
+      grid.className = 'check-grid';
+      DIETARY_OPTIONS.forEach(opt => {
+        const lbl = document.createElement('label');
+        lbl.className = 'check-item';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox'; cb.name = `diet_${i}`; cb.value = opt;
+        const span = document.createElement('span');
+        span.textContent = opt;
+        lbl.appendChild(cb); lbl.appendChild(span);
+        grid.appendChild(lbl);
+      });
+      dietField.appendChild(grid);
+      card.appendChild(dietField);
+
+      // Other
+      const otherField = document.createElement('div');
+      otherField.className = 'card-field';
+      const otherLbl = document.createElement('label');
+      otherLbl.className = 'field-label';
+      otherLbl.setAttribute('for', `other-${i}`);
+      otherLbl.textContent = 'OTHER NOTES / ALLERGIES';
+      const otherInp = document.createElement('input');
+      otherInp.type = 'text'; otherInp.id = `other-${i}`;
+      otherInp.placeholder = 'e.g. nut allergy, shellfish intolerance…';
+      otherField.appendChild(otherLbl); otherField.appendChild(otherInp);
+      card.appendChild(otherField);
+
+      wrap.appendChild(card);
+    }
+  }
+
+  document.getElementById('rsvp-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    const data = collectData();
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      document.getElementById('rsvp-form').classList.add('hidden');
+      show('success-screen');
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Send My RSVP ♡';
+      alert('Something went wrong — please try again.');
+    }
+  });
+
+  function collectData() {
+    const guests = [];
+    for (let i = 0; i < partySize; i++) {
+      guests.push({
+        name:    document.getElementById(`gname-${i}`)?.value.trim() || '',
+        meal:    document.getElementById(`meal-${i}`)?.value || '',
+        dietary: [...document.querySelectorAll(`input[name="diet_${i}"]:checked`)].map(c => c.value).join(', '),
+        other:   document.getElementById(`other-${i}`)?.value.trim() || '',
+      });
+    }
+    return {
+      timestamp: new Date().toISOString(),
+      email: document.getElementById('email').value.trim(),
+      primaryGuest: document.getElementById('fullname').value.trim(),
+      attending, partySize,
+      song: document.getElementById('song')?.value.trim() || '',
+      guests,
+    };
+  }
+
+  function validate() {
+    let ok = true;
+    const email = document.getElementById('email');
+    const errEmail = document.getElementById('err-email');
+    if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.classList.add('is-invalid'); errEmail.style.display = 'block'; ok = false;
+    } else { email.classList.remove('is-invalid'); errEmail.style.display = 'none'; }
+
+    const name = document.getElementById('fullname');
+    const errName = document.getElementById('err-name');
+    if (!name.value.trim()) {
+      name.classList.add('is-invalid'); errName.style.display = 'block'; ok = false;
+    } else { name.classList.remove('is-invalid'); errName.style.display = 'none'; }
+
+    const errAttend = document.getElementById('err-attend');
+    if (!attending) { errAttend.style.display = 'block'; ok = false; }
+    else { errAttend.style.display = 'none'; }
+    return ok;
+  }
+</script>
+</body>
+</html>
