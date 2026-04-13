@@ -425,7 +425,8 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
   overflow: hidden;
 }
-.stage-drapes svg {
+.drape-svg-left,
+.drape-svg-right {
   position: absolute;
   top: 0;
   height: 100%;
@@ -438,18 +439,10 @@ button { font-family: inherit; cursor: pointer; }
   right: 0;
   width: 50px;
 }
-.drape-valance-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10px;
-}
 
 @media (max-width: 768px) {
   .drape-svg-left { width: 28px; }
   .drape-svg-right { width: 28px; }
-  .drape-valance-svg { height: 6px; }
 }
 
 /* ── Section gold separators ── */
@@ -1330,18 +1323,6 @@ button { font-family: inherit; cursor: pointer; }
     </g>
   </svg>
 
-  <!-- ── Top valance ── -->
-  <svg class="drape-valance-svg" viewBox="0 0 1440 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1440" height="8" fill="#4A1520"/>
-    <rect y="7" width="1440" height="3" fill="#3a0f18"/>
-    <path d="M0,9 Q36,12 72,9 Q108,12 144,9 Q180,12 216,9 Q252,12 288,9 Q324,12 360,9
-             Q396,12 432,9 Q468,12 504,9 Q540,12 576,9 Q612,12 648,9 Q684,12 720,9
-             Q756,12 792,9 Q828,12 864,9 Q900,12 936,9 Q972,12 1008,9 Q1044,12 1080,9
-             Q1116,12 1152,9 Q1188,12 1224,9 Q1260,12 1296,9 Q1332,12 1368,9 Q1404,12 1440,9
-             L1440,12 L0,12 Z" fill="#3a0f18"/>
-    <line x1="0" y1="8.5" x2="1440" y2="8.5" stroke="#C9A84C" stroke-width="0.8" opacity="0.3"/>
-    <rect x="0" y="2" width="1440" height="1" fill="#7a2538" opacity="0.25"/>
-  </svg>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
