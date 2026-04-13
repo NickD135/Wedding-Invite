@@ -417,7 +417,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--gold-light);
 }
 
-/* ── Persistent stage curtain drapes ── */
+/* ── Persistent stage curtain drapes (SVG-based) ── */
 .stage-drapes {
   position: fixed;
   inset: 0;
@@ -425,155 +425,29 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
   overflow: hidden;
 }
-/* Left drape */
-.drape-left {
+.stage-drapes svg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.drape-svg-left {
+  left: 0;
+  width: 120px;
+}
+.drape-svg-right {
+  right: 0;
+  width: 120px;
+}
+.drape-valance-svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 100%;
-  background: linear-gradient(180deg, #5a1525 0%, #6B1E2E 15%, #4A1520 50%, #3a0f18 85%, #2a0b12 100%);
-  clip-path: polygon(0 0, 100% 0, 60% 18%, 30% 100%, 0 100%);
-}
-.drape-left::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent 0px,
-    rgba(0,0,0,0.12) 8px,
-    transparent 16px,
-    rgba(255,255,255,0.02) 24px,
-    transparent 32px
-  );
-}
-/* Right drape */
-.drape-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 100%;
-  background: linear-gradient(180deg, #5a1525 0%, #6B1E2E 15%, #4A1520 50%, #3a0f18 85%, #2a0b12 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 100%, 40% 18%);
-}
-.drape-right::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    transparent 0px,
-    rgba(0,0,0,0.12) 8px,
-    transparent 16px,
-    rgba(255,255,255,0.02) 24px,
-    transparent 32px
-  );
-}
-/* Gold tieback — left */
-.tieback-left {
-  position: absolute;
-  left: 22px;
-  top: 17%;
-  width: 40px;
-  height: 40px;
-}
-.tieback-left::before {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #D4BC6A 0%, #C9A84C 40%, #a08030 100%);
-  box-shadow: 0 0 12px rgba(201,168,76,0.5), 0 0 30px rgba(201,168,76,0.2);
-  top: 0; left: 0;
-}
-.tieback-left::after {
-  content: '';
-  position: absolute;
-  top: 24px;
-  left: 10px;
-  width: 2px;
-  height: 120px;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.4) 40%, rgba(201,168,76,0.15) 70%, transparent 100%);
-  border-radius: 1px;
-}
-/* Gold tieback — right */
-.tieback-right {
-  position: absolute;
-  right: 22px;
-  top: 17%;
-  width: 40px;
-  height: 40px;
-}
-.tieback-right::before {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #D4BC6A 0%, #C9A84C 40%, #a08030 100%);
-  box-shadow: 0 0 12px rgba(201,168,76,0.5), 0 0 30px rgba(201,168,76,0.2);
-  top: 0; right: 0;
-}
-.tieback-right::after {
-  content: '';
-  position: absolute;
-  top: 24px;
-  right: 10px;
-  width: 2px;
-  height: 120px;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.4) 40%, rgba(201,168,76,0.15) 70%, transparent 100%);
-  border-radius: 1px;
-}
-/* Top pelmet / valance */
-.drape-valance {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: linear-gradient(180deg, #5a1525 0%, #4A1520 60%, transparent 100%);
-  z-index: 1;
-}
-.drape-valance::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--gold-light) 50%, var(--gold) 85%, transparent 100%);
-  opacity: 0.4;
-}
-
-/* Gold edge lines on drapes */
-.drape-left::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1.5px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 30%, rgba(201,168,76,0.1) 60%, transparent 100%);
-}
-.drape-right::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1.5px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 30%, rgba(201,168,76,0.1) 60%, transparent 100%);
+  width: 100%;
+  height: 18px;
 }
 
 @media (max-width: 768px) {
-  .drape-left, .drape-right { width: 40px; }
-  .tieback-left { left: 6px; }
-  .tieback-right { right: 6px; }
-  .tieback-left::before, .tieback-right::before { width: 16px; height: 16px; }
-  .tieback-left::after, .tieback-right::after { height: 80px; top: 16px; }
+  .drape-svg-left, .drape-svg-right { width: 60px; }
 }
 
 /* ── Section gold separators ── */
@@ -1286,11 +1160,232 @@ button { font-family: inherit; cursor: pointer; }
      PERSISTENT STAGE DRAPES
 ═══════════════════════════════════════════════════════ -->
 <div class="stage-drapes">
-  <div class="drape-valance"></div>
-  <div class="drape-left"></div>
-  <div class="drape-right"></div>
-  <div class="tieback-left"></div>
-  <div class="tieback-right"></div>
+  <!-- ── Left curtain drape with rope tieback ── -->
+  <svg class="drape-svg-left" viewBox="0 0 120 1000" preserveAspectRatio="xMinYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Curtain fabric gradient -->
+      <linearGradient id="curtain-l" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#6B1E2E"/>
+        <stop offset="30%" stop-color="#5a1828"/>
+        <stop offset="55%" stop-color="#7a2538"/>
+        <stop offset="70%" stop-color="#4A1520"/>
+        <stop offset="100%" stop-color="#3a0f18"/>
+      </linearGradient>
+      <!-- Vertical shading for depth -->
+      <linearGradient id="curtain-depth-l" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7a2538" stop-opacity="0.4"/>
+        <stop offset="30%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="70%" stop-color="#000" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#1a0808" stop-opacity="0.8"/>
+      </linearGradient>
+      <!-- Gold rope gradient -->
+      <linearGradient id="rope-gold" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#8a6820"/>
+        <stop offset="20%" stop-color="#C9A84C"/>
+        <stop offset="40%" stop-color="#E8D48A"/>
+        <stop offset="55%" stop-color="#D4BC6A"/>
+        <stop offset="75%" stop-color="#C9A84C"/>
+        <stop offset="100%" stop-color="#8a6820"/>
+      </linearGradient>
+      <!-- Tassel gradient -->
+      <linearGradient id="tassel-gold" x1="0.5" y1="0" x2="0.5" y2="1">
+        <stop offset="0%" stop-color="#D4BC6A"/>
+        <stop offset="50%" stop-color="#C9A84C"/>
+        <stop offset="100%" stop-color="#8a6820"/>
+      </linearGradient>
+      <!-- Glow filter -->
+      <filter id="gold-glow-l">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Main curtain body — gathered at top, pulled in at tieback, drapes below -->
+    <path d="M0,0 L95,0 C90,20 85,60 72,120 C60,180 50,200 42,220
+             C38,240 36,250 38,260 C42,270 52,274 56,276
+             C48,290 38,340 30,440 C22,540 18,700 16,1000
+             L0,1000 Z"
+          fill="url(#curtain-l)"/>
+
+    <!-- Fabric fold highlights -->
+    <path d="M20,0 C22,40 24,80 26,120 C28,160 30,200 28,240 C27,260 30,276 32,280
+             C30,320 26,440 24,600 C22,760 20,880 18,1000"
+          stroke="rgba(180,100,120,0.15)" stroke-width="8" fill="none"/>
+    <path d="M45,0 C48,30 52,80 55,130 C58,170 54,210 44,240 C40,256 42,270 46,276
+             C42,310 36,400 32,540 C28,680 26,820 24,1000"
+          stroke="rgba(220,150,160,0.08)" stroke-width="12" fill="none"/>
+    <path d="M68,0 C66,30 62,70 58,120 C52,170 48,210 42,235
+             C40,248 40,264 44,274"
+          stroke="rgba(100,40,50,0.25)" stroke-width="6" fill="none"/>
+
+    <!-- Shadow fold lines -->
+    <path d="M35,0 C36,50 38,100 40,150 C42,190 40,220 36,248 C34,262 36,274 40,278
+             C36,320 32,460 28,620 C24,780 22,900 20,1000"
+          stroke="rgba(20,5,8,0.2)" stroke-width="4" fill="none"/>
+
+    <!-- Depth overlay -->
+    <path d="M0,0 L95,0 C90,20 85,60 72,120 C60,180 50,200 42,220
+             C38,240 36,250 38,260 C42,270 52,274 56,276
+             C48,290 38,340 30,440 C22,540 18,700 16,1000
+             L0,1000 Z"
+          fill="url(#curtain-depth-l)"/>
+
+    <!-- Gold trim along inner edge -->
+    <path d="M95,0 C90,20 85,60 72,120 C60,180 50,200 42,220
+             C38,240 36,250 38,260 C42,270 52,274 56,276
+             C48,290 38,340 30,440 C22,540 18,700 16,1000"
+          stroke="url(#rope-gold)" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+    <!-- ── Gold rope tieback ── -->
+    <g filter="url(#gold-glow-l)">
+      <!-- Rope curve wrapping around the curtain -->
+      <path d="M0,250 C10,248 20,250 30,254 C40,258 46,264 50,270 C54,276 50,282 44,284"
+            stroke="url(#rope-gold)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Rope twist detail (braided look) -->
+      <path d="M4,249 C8,248 12,249 16,250" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M14,250 C18,250 22,251 26,253" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M24,253 C28,255 32,257 36,260" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M34,259 C38,262 42,266 46,270" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <!-- Second rope strand -->
+      <path d="M0,254 C10,253 20,256 30,260 C38,264 44,270 48,276 C50,280 48,286 42,288"
+            stroke="url(#rope-gold)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Rope knot / medallion -->
+      <circle cx="44" cy="286" r="8" fill="url(#rope-gold)" stroke="#8a6820" stroke-width="1"/>
+      <circle cx="44" cy="286" r="5" fill="none" stroke="#E8D48A" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="44" cy="286" r="2.5" fill="#E8D48A" opacity="0.4"/>
+
+      <!-- Tassel strands hanging from knot -->
+      <path d="M40,294 C39,320 38,360 37,400 C36,430 37,450 36,480"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M44,294 C44,325 43,365 43,405 C43,435 44,455 43,490"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M48,294 C49,318 49,355 50,395 C50,425 49,445 50,475"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <!-- Thin tassel threads -->
+      <path d="M38,294 C37,330 36,370 35,420" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M42,294 C41,335 41,380 40,440" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M46,294 C46,330 47,375 47,440" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M50,294 C51,325 52,365 52,420" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <!-- Tassel end cap -->
+      <ellipse cx="43" cy="486" rx="10" ry="4" fill="url(#tassel-gold)" opacity="0.6"/>
+    </g>
+  </svg>
+
+  <!-- ── Right curtain drape (mirrored) ── -->
+  <svg class="drape-svg-right" viewBox="0 0 120 1000" preserveAspectRatio="xMaxYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="curtain-r" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%" stop-color="#6B1E2E"/>
+        <stop offset="30%" stop-color="#5a1828"/>
+        <stop offset="55%" stop-color="#7a2538"/>
+        <stop offset="70%" stop-color="#4A1520"/>
+        <stop offset="100%" stop-color="#3a0f18"/>
+      </linearGradient>
+      <linearGradient id="curtain-depth-r" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7a2538" stop-opacity="0.4"/>
+        <stop offset="30%" stop-color="#000" stop-opacity="0"/>
+        <stop offset="70%" stop-color="#000" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#1a0808" stop-opacity="0.8"/>
+      </linearGradient>
+      <linearGradient id="rope-gold-r" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%" stop-color="#8a6820"/>
+        <stop offset="20%" stop-color="#C9A84C"/>
+        <stop offset="40%" stop-color="#E8D48A"/>
+        <stop offset="55%" stop-color="#D4BC6A"/>
+        <stop offset="75%" stop-color="#C9A84C"/>
+        <stop offset="100%" stop-color="#8a6820"/>
+      </linearGradient>
+      <filter id="gold-glow-r">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Main curtain body (mirrored) -->
+    <path d="M120,0 L25,0 C30,20 35,60 48,120 C60,180 70,200 78,220
+             C82,240 84,250 82,260 C78,270 68,274 64,276
+             C72,290 82,340 90,440 C98,540 102,700 104,1000
+             L120,1000 Z"
+          fill="url(#curtain-r)"/>
+
+    <!-- Fabric fold highlights -->
+    <path d="M100,0 C98,40 96,80 94,120 C92,160 90,200 92,240 C93,260 90,276 88,280
+             C90,320 94,440 96,600 C98,760 100,880 102,1000"
+          stroke="rgba(180,100,120,0.15)" stroke-width="8" fill="none"/>
+    <path d="M75,0 C72,30 68,80 65,130 C62,170 66,210 76,240 C80,256 78,270 74,276
+             C78,310 84,400 88,540 C92,680 94,820 96,1000"
+          stroke="rgba(220,150,160,0.08)" stroke-width="12" fill="none"/>
+    <path d="M52,0 C54,30 58,70 62,120 C68,170 72,210 78,235
+             C80,248 80,264 76,274"
+          stroke="rgba(100,40,50,0.25)" stroke-width="6" fill="none"/>
+
+    <!-- Shadow fold lines -->
+    <path d="M85,0 C84,50 82,100 80,150 C78,190 80,220 84,248 C86,262 84,274 80,278
+             C84,320 88,460 92,620 C96,780 98,900 100,1000"
+          stroke="rgba(20,5,8,0.2)" stroke-width="4" fill="none"/>
+
+    <!-- Depth overlay -->
+    <path d="M120,0 L25,0 C30,20 35,60 48,120 C60,180 70,200 78,220
+             C82,240 84,250 82,260 C78,270 68,274 64,276
+             C72,290 82,340 90,440 C98,540 102,700 104,1000
+             L120,1000 Z"
+          fill="url(#curtain-depth-r)"/>
+
+    <!-- Gold trim along inner edge -->
+    <path d="M25,0 C30,20 35,60 48,120 C60,180 70,200 78,220
+             C82,240 84,250 82,260 C78,270 68,274 64,276
+             C72,290 82,340 90,440 C98,540 102,700 104,1000"
+          stroke="url(#rope-gold-r)" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+    <!-- ── Gold rope tieback (mirrored) ── -->
+    <g filter="url(#gold-glow-r)">
+      <path d="M120,250 C110,248 100,250 90,254 C80,258 74,264 70,270 C66,276 70,282 76,284"
+            stroke="url(#rope-gold-r)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M116,249 C112,248 108,249 104,250" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M106,250 C102,250 98,251 94,253" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M96,253 C92,255 88,257 84,260" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M86,259 C82,262 78,266 74,270" stroke="#E8D48A" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M120,254 C110,253 100,256 90,260 C82,264 76,270 72,276 C70,280 72,286 78,288"
+            stroke="url(#rope-gold-r)" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Rope knot / medallion -->
+      <circle cx="76" cy="286" r="8" fill="url(#rope-gold-r)" stroke="#8a6820" stroke-width="1"/>
+      <circle cx="76" cy="286" r="5" fill="none" stroke="#E8D48A" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="76" cy="286" r="2.5" fill="#E8D48A" opacity="0.4"/>
+
+      <!-- Tassel strands -->
+      <path d="M80,294 C81,320 82,360 83,400 C84,430 83,450 84,480"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M76,294 C76,325 77,365 77,405 C77,435 76,455 77,490"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M72,294 C71,318 71,355 70,395 C70,425 71,445 70,475"
+            stroke="url(#tassel-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M82,294 C83,330 84,370 85,420" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <path d="M78,294 C79,335 79,380 80,440" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M74,294 C74,330 73,375 73,440" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <path d="M70,294 C69,325 68,365 68,420" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.5"/>
+      <!-- Tassel end cap -->
+      <ellipse cx="77" cy="486" rx="10" ry="4" fill="url(#tassel-gold)" opacity="0.6"/>
+    </g>
+  </svg>
+
+  <!-- ── Top valance ── -->
+  <svg class="drape-valance-svg" viewBox="0 0 1440 18" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1440" height="14" fill="#4A1520"/>
+    <rect y="12" width="1440" height="3" fill="#3a0f18"/>
+    <!-- Scalloped bottom edge -->
+    <path d="M0,14 Q36,18 72,14 Q108,18 144,14 Q180,18 216,14 Q252,18 288,14 Q324,18 360,14
+             Q396,18 432,14 Q468,18 504,14 Q540,18 576,14 Q612,18 648,14 Q684,18 720,14
+             Q756,18 792,14 Q828,18 864,14 Q900,18 936,14 Q972,18 1008,14 Q1044,18 1080,14
+             Q1116,18 1152,14 Q1188,18 1224,14 Q1260,18 1296,14 Q1332,18 1368,14 Q1404,18 1440,14
+             L1440,18 L0,18 Z" fill="#3a0f18"/>
+    <!-- Gold trim line -->
+    <line x1="0" y1="13.5" x2="1440" y2="13.5" stroke="#C9A84C" stroke-width="1" opacity="0.35"/>
+    <!-- Subtle fold highlights -->
+    <rect x="0" y="3" width="1440" height="1" fill="#7a2538" opacity="0.3"/>
+    <rect x="0" y="7" width="1440" height="1" fill="#2a0b12" opacity="0.4"/>
+  </svg>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
