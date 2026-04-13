@@ -23,7 +23,8 @@
   --cream: #FAF7F2;
   --muted: #8A7E72;
   --text: #2C2420;
-  --card-bg: rgba(250,247,242,0.97);
+  --card-bg: rgba(18,14,10,0.92);
+  --card-border: rgba(201,168,76,0.25);
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Cormorant Garamond', Georgia, serif;
@@ -402,14 +403,6 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--black);
   color: var(--ivory);
 }
-.section-light {
-  background: var(--ivory);
-  color: var(--text);
-}
-.section-cream {
-  background: var(--cream);
-  color: var(--text);
-}
 .section-inner {
   max-width: 880px;
   margin: 0 auto;
@@ -421,10 +414,182 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   margin-bottom: 12px;
   letter-spacing: 0.02em;
+  color: var(--gold-light);
 }
-.section-dark .section-title { color: var(--ivory); }
-.section-light .section-title,
-.section-cream .section-title { color: var(--burgundy); }
+
+/* ── Persistent stage curtain drapes ── */
+.stage-drapes {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Left drape */
+.drape-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(180deg, #5a1525 0%, #6B1E2E 15%, #4A1520 50%, #3a0f18 85%, #2a0b12 100%);
+  clip-path: polygon(0 0, 100% 0, 60% 18%, 30% 100%, 0 100%);
+}
+.drape-left::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    rgba(0,0,0,0.12) 8px,
+    transparent 16px,
+    rgba(255,255,255,0.02) 24px,
+    transparent 32px
+  );
+}
+/* Right drape */
+.drape-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(180deg, #5a1525 0%, #6B1E2E 15%, #4A1520 50%, #3a0f18 85%, #2a0b12 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 100%, 40% 18%);
+}
+.drape-right::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    rgba(0,0,0,0.12) 8px,
+    transparent 16px,
+    rgba(255,255,255,0.02) 24px,
+    transparent 32px
+  );
+}
+/* Gold tieback — left */
+.tieback-left {
+  position: absolute;
+  left: 22px;
+  top: 17%;
+  width: 40px;
+  height: 40px;
+}
+.tieback-left::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #D4BC6A 0%, #C9A84C 40%, #a08030 100%);
+  box-shadow: 0 0 12px rgba(201,168,76,0.5), 0 0 30px rgba(201,168,76,0.2);
+  top: 0; left: 0;
+}
+.tieback-left::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 10px;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.4) 40%, rgba(201,168,76,0.15) 70%, transparent 100%);
+  border-radius: 1px;
+}
+/* Gold tieback — right */
+.tieback-right {
+  position: absolute;
+  right: 22px;
+  top: 17%;
+  width: 40px;
+  height: 40px;
+}
+.tieback-right::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #D4BC6A 0%, #C9A84C 40%, #a08030 100%);
+  box-shadow: 0 0 12px rgba(201,168,76,0.5), 0 0 30px rgba(201,168,76,0.2);
+  top: 0; right: 0;
+}
+.tieback-right::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 10px;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.4) 40%, rgba(201,168,76,0.15) 70%, transparent 100%);
+  border-radius: 1px;
+}
+/* Top pelmet / valance */
+.drape-valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(180deg, #5a1525 0%, #4A1520 60%, transparent 100%);
+  z-index: 1;
+}
+.drape-valance::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 15%, var(--gold-light) 50%, var(--gold) 85%, transparent 100%);
+  opacity: 0.4;
+}
+
+/* Gold edge lines on drapes */
+.drape-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 30%, rgba(201,168,76,0.1) 60%, transparent 100%);
+}
+.drape-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 30%, rgba(201,168,76,0.1) 60%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+  .drape-left, .drape-right { width: 40px; }
+  .tieback-left { left: 6px; }
+  .tieback-right { right: 6px; }
+  .tieback-left::before, .tieback-right::before { width: 16px; height: 16px; }
+  .tieback-left::after, .tieback-right::after { height: 80px; top: 16px; }
+}
+
+/* ── Section gold separators ── */
+.section + .section {
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
 
 .section-ornament {
   text-align: center;
@@ -548,17 +713,17 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ */
 .program-card {
   background: var(--card-bg);
-  border: 1px solid rgba(201,168,76,0.3);
+  border: 1px solid var(--card-border);
   border-radius: 4px;
   padding: 48px;
   position: relative;
-  box-shadow: 0 4px 60px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.06);
 }
 .program-card::before {
   content: '';
   position: absolute;
   inset: 10px;
-  border: 1px solid rgba(201,168,76,0.18);
+  border: 1px solid rgba(201,168,76,0.12);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -566,7 +731,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 14px;
-  border: 0.5px solid rgba(201,168,76,0.08);
+  border: 0.5px solid rgba(201,168,76,0.06);
   border-radius: 1px;
   pointer-events: none;
 }
@@ -580,7 +745,7 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 400;
-  color: var(--burgundy);
+  color: var(--gold-light);
   margin-bottom: 4px;
 }
 .program-header p {
@@ -588,14 +753,14 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(245,240,232,0.5);
 }
 
 .program-item {
   display: flex;
   gap: 24px;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(201,168,76,0.1);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
 }
 .program-item:last-child { border-bottom: none; }
 .program-time {
@@ -610,12 +775,12 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: 500;
-  color: var(--text);
+  color: var(--ivory);
   margin-bottom: 4px;
 }
 .program-desc p {
   font-size: 16px;
-  color: var(--muted);
+  color: rgba(245,240,232,0.6);
   line-height: 1.6;
 }
 
@@ -623,8 +788,8 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   margin-top: 36px;
   padding: 24px;
-  background: rgba(107,30,46,0.04);
-  border: 1px solid rgba(107,30,46,0.1);
+  background: rgba(201,168,76,0.04);
+  border: 1px solid rgba(201,168,76,0.12);
   border-radius: 3px;
 }
 .dress-code-label {
@@ -633,13 +798,13 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(245,240,232,0.45);
   margin-bottom: 6px;
 }
 .dress-code-value {
   font-family: var(--font-display);
   font-size: 22px;
-  color: var(--burgundy);
+  color: var(--gold);
 }
 
 /* Invitation button */
@@ -750,19 +915,19 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ */
 .rsvp-card {
   background: var(--card-bg);
-  border: 1px solid rgba(201,168,76,0.3);
+  border: 1px solid var(--card-border);
   border-radius: 4px;
   padding: 48px;
   max-width: 600px;
   margin: 0 auto;
   position: relative;
-  box-shadow: 0 4px 60px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.06);
 }
 .rsvp-card::before {
   content: '';
   position: absolute;
   inset: 10px;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.1);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -775,7 +940,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--gold);
   margin-bottom: 32px;
 }
 
@@ -789,21 +954,21 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(245,240,232,0.5);
   margin-bottom: 8px;
 }
-.form-label .req { color: var(--burgundy); margin-left: 2px; }
+.form-label .req { color: var(--gold); margin-left: 2px; }
 .form-input,
 .form-textarea,
 .form-select {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid rgba(201,168,76,0.25);
+  border: 1px solid rgba(201,168,76,0.2);
   border-radius: 3px;
-  background: white;
+  background: rgba(0,0,0,0.3);
   font-family: var(--font-body);
   font-size: 17px;
-  color: var(--text);
+  color: var(--ivory);
   transition: border-color 0.2s, box-shadow 0.2s;
   appearance: none;
   -webkit-appearance: none;
@@ -819,14 +984,18 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
 }
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(245,240,232,0.25);
+}
 .form-input.is-invalid,
 .form-textarea.is-invalid {
-  border-color: var(--burgundy);
+  border-color: #c44;
 }
 .form-error {
   font-family: var(--font-ui);
   font-size: 12px;
-  color: var(--burgundy);
+  color: #e88;
   margin-top: 5px;
   display: none;
 }
@@ -845,35 +1014,35 @@ button { font-family: inherit; cursor: pointer; }
 .attend-btn {
   flex: 1;
   padding: 14px 12px;
-  border: 1.5px solid rgba(201,168,76,0.25);
+  border: 1.5px solid rgba(201,168,76,0.2);
   border-radius: 3px;
-  background: white;
+  background: rgba(0,0,0,0.3);
   font-family: var(--font-display);
   font-size: 16px;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: rgba(245,240,232,0.5);
   cursor: pointer;
   transition: all 0.25s;
   text-align: center;
 }
-.attend-btn:hover { border-color: var(--gold); color: var(--text); }
+.attend-btn:hover { border-color: var(--gold); color: var(--ivory); }
 .attend-btn.sel-yes {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.08);
+  background: rgba(201,168,76,0.12);
   color: var(--gold);
   font-weight: 600;
 }
 .attend-btn.sel-no {
-  border-color: var(--burgundy);
-  background: rgba(107,30,46,0.05);
-  color: var(--burgundy);
+  border-color: #c44;
+  background: rgba(180,60,60,0.08);
+  color: #e88;
 }
 
 .rsvp-note {
   text-align: center;
   font-size: 14px;
   font-style: italic;
-  color: var(--muted);
+  color: rgba(245,240,232,0.4);
   margin-top: 24px;
   line-height: 1.6;
 }
@@ -925,11 +1094,11 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 32px;
-  color: var(--burgundy);
+  color: var(--gold-light);
   margin-bottom: 8px;
 }
 .success-screen p {
-  color: var(--muted);
+  color: rgba(245,240,232,0.6);
   font-style: italic;
 }
 .btn-another {
@@ -1083,7 +1252,7 @@ button { font-family: inherit; cursor: pointer; }
 .gifts-content p {
   font-size: 19px;
   font-style: italic;
-  color: var(--muted);
+  color: rgba(245,240,232,0.7);
   line-height: 1.8;
 }
 
@@ -1112,6 +1281,17 @@ button { font-family: inherit; cursor: pointer; }
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════════════════
+     PERSISTENT STAGE DRAPES
+═══════════════════════════════════════════════════════ -->
+<div class="stage-drapes">
+  <div class="drape-valance"></div>
+  <div class="drape-left"></div>
+  <div class="drape-right"></div>
+  <div class="tieback-left"></div>
+  <div class="tieback-right"></div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════
      NAVIGATION
@@ -1233,7 +1413,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ═══════════════════════════════════════════════════════
      DETAILS
 ═══════════════════════════════════════════════════════ -->
-<section class="section section-light" id="details">
+<section class="section section-dark" id="details">
   <div class="section-inner">
     <h2 class="section-title reveal">The Details</h2>
     <div class="section-ornament reveal">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
@@ -1304,7 +1484,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ═══════════════════════════════════════════════════════
      RSVP
 ═══════════════════════════════════════════════════════ -->
-<section class="section section-cream" id="rsvp">
+<section class="section section-dark" id="rsvp">
   <div class="section-inner">
     <h2 class="section-title reveal">RSVP</h2>
     <div class="section-ornament reveal">&#10022; &nbsp; &#9825; &nbsp; &#10022;</div>
@@ -1412,7 +1592,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ═══════════════════════════════════════════════════════
      FAQs
 ═══════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="faqs" style="border-top: 1px solid rgba(201,168,76,0.06);">
+<section class="section section-dark" id="faqs">
   <div class="section-inner">
     <h2 class="section-title reveal">FAQs</h2>
     <div class="section-ornament reveal">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
@@ -1474,7 +1654,7 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ═══════════════════════════════════════════════════════
      GIFTS
 ═══════════════════════════════════════════════════════ -->
-<section class="section section-light" id="gifts">
+<section class="section section-dark" id="gifts">
   <div class="section-inner">
     <h2 class="section-title reveal">Gifts</h2>
     <div class="section-ornament reveal">&#10022; &nbsp; &#9825; &nbsp; &#10022;</div>
