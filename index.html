@@ -932,6 +932,26 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--muted);
   font-style: italic;
 }
+.btn-another {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 36px;
+  border: 1.5px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.btn-another:hover {
+  background: var(--gold);
+  color: var(--black);
+}
 
 @media (max-width: 520px) {
   .rsvp-card { padding: 28px 20px; }
@@ -1332,6 +1352,7 @@ button { font-family: inherit; cursor: pointer; }
         <h3>Thank You!</h3>
         <p>Your RSVP has been received.<br>We can't wait to celebrate with you.</p>
         <p style="margin-top: 16px; font-size: 15px; color: var(--gold);">&#9825; Nicholas &amp; Jodee &#9825;</p>
+        <button type="button" class="btn-another" id="btn-another-success">RSVP for Another Guest</button>
       </div>
 
       <p class="rsvp-note">
@@ -1616,6 +1637,22 @@ button { font-family: inherit; cursor: pointer; }
       alert('Something went wrong. Please try again.');
     }
   });
+
+  function resetForm() {
+    attending = null;
+    document.getElementById('rsvp-form').reset();
+    document.getElementById('rsvp-form').style.display = 'block';
+    document.getElementById('success-screen').classList.remove('visible');
+    btnYes.className = 'attend-btn';
+    btnNo.className = 'attend-btn';
+    fieldDietary.style.display = 'none';
+    fieldSong.style.display = 'none';
+    document.getElementById('submit-btn').disabled = false;
+    document.getElementById('submit-btn').textContent = 'Send RSVP';
+    document.getElementById('rsvp-name').focus();
+  }
+
+  document.getElementById('btn-another-success').addEventListener('click', resetForm);
 
   function validate() {
     let ok = true;
