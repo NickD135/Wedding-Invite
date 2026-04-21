@@ -1081,32 +1081,10 @@ button { font-family: inherit; cursor: pointer; }
         <div class="dress-code-value">Cocktail Attire</div>
       </div>
 
-      <div class="invite-btn-wrap">
-        <button class="invite-btn" id="invite-btn">View Our Invitation</button>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- Invitation Modal -->
-<div class="modal-overlay" id="invite-modal">
-  <div class="modal-content">
-    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-    <div class="modal-body">
-      <h3>Our Wedding Invitation</h3>
-      <!-- TODO: Replace with actual PDF embed or image. If a PDF is in the repo, use:
-           <iframe src="./invitation.pdf" width="100%" height="500" style="border:none;"></iframe>
-           Or link to it: <a href="./invitation.pdf" target="_blank">Download Invitation (PDF)</a>
-      -->
-      <p>The formal invitation will be available here soon.</p>
-      <p style="margin-top: 24px; font-size: 15px; color: rgba(245,240,232,0.5);">
-        Jodee &amp; Nicholas<br>
-        Saturday, 11 July 2026<br>
-        QT Hotel Sydney
-      </p>
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════════════════════
      RSVP
@@ -1462,21 +1440,6 @@ button { font-family: inherit; cursor: pointer; }
   }
 })();
 
-/* ── Invitation Modal ── */
-(function modal() {
-  const overlay = document.getElementById('invite-modal');
-  const openBtn = document.getElementById('invite-btn');
-  const closeBtn = document.getElementById('modal-close');
-
-  openBtn.addEventListener('click', () => overlay.classList.add('active'));
-  closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) overlay.classList.remove('active');
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') overlay.classList.remove('active');
-  });
-})();
 
 /* ── FAQ Accordions ── */
 (function faqs() {
