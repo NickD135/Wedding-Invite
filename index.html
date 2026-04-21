@@ -14,17 +14,17 @@
 :root {
   --burgundy: #6B1E2E;
   --burgundy-dark: #4A1520;
-  --gold: #C9A84C;
-  --gold-light: #D4BC6A;
-  --gold-muted: rgba(201,168,76,0.3);
+  --gold: #8B6F47;
+  --gold-light: #A68B5B;
+  --gold-muted: rgba(139,111,71,0.3);
   --black: #0D0D0D;
-  --ivory: #F5F0E8;
-  --ivory-warm: #EDE6D8;
-  --cream: #FAF7F2;
-  --muted: #8A7E72;
+  --ivory: #FFFFFF;
+  --ivory-warm: #F5F5F5;
+  --cream: #FAFAFA;
+  --muted: #7A6E62;
   --text: #2C2420;
   --card-bg: rgba(18,14,10,0.92);
-  --card-border: rgba(201,168,76,0.25);
+  --card-border: rgba(139,111,71,0.25);
 
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Cormorant Garamond', Georgia, serif;
@@ -64,8 +64,8 @@ button { font-family: inherit; cursor: pointer; }
   to   { opacity: 1; }
 }
 @keyframes pulseGlow {
-  0%, 100% { text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 0 80px rgba(201,168,76,0.1); }
-  50%      { text-shadow: 0 0 60px rgba(201,168,76,0.5), 0 0 120px rgba(201,168,76,0.2); }
+  0%, 100% { text-shadow: 0 0 40px rgba(139,111,71,0.3), 0 0 80px rgba(139,111,71,0.1); }
+  50%      { text-shadow: 0 0 60px rgba(139,111,71,0.5), 0 0 120px rgba(139,111,71,0.2); }
 }
 @keyframes shimmer {
   0%   { background-position: -200% center; }
@@ -103,7 +103,7 @@ button { font-family: inherit; cursor: pointer; }
   background: rgba(13,13,13,0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 rgba(201,168,76,0.15);
+  box-shadow: 0 1px 0 rgba(139,111,71,0.15);
 }
 .nav-inner {
   max-width: 1100px;
@@ -132,7 +132,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.7);
+  color: rgba(255,255,255,0.7);
   transition: color 0.3s;
   white-space: nowrap;
 }
@@ -202,8 +202,8 @@ button { font-family: inherit; cursor: pointer; }
   inset: 0;
   background:
     radial-gradient(ellipse at 50% 30%, rgba(107,30,46,0.25) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(139,111,71,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(139,111,71,0.08) 0%, transparent 50%),
     linear-gradient(180deg, #0a0606 0%, #120a08 40%, #0D0D0D 100%);
   z-index: 0;
 }
@@ -213,7 +213,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 30px;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(139,111,71,0.12);
   z-index: 1;
   pointer-events: none;
 }
@@ -221,7 +221,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 34px;
-  border: 0.5px solid rgba(201,168,76,0.06);
+  border: 0.5px solid rgba(139,111,71,0.06);
   z-index: 1;
   pointer-events: none;
 }
@@ -270,7 +270,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 300;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.6);
+  color: rgba(255,255,255,0.6);
   margin-top: 24px;
 }
 
@@ -297,7 +297,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.4);
+  color: rgba(255,255,255,0.4);
   margin-top: 6px;
   display: block;
 }
@@ -320,7 +320,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 10px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.35);
+  color: rgba(255,255,255,0.35);
   display: block;
   margin-bottom: 8px;
 }
@@ -359,7 +359,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ── Section gold separators ── */
 .section + .section {
-  border-top: 1px solid rgba(201,168,76,0.08);
+  border-top: 1px solid rgba(139,111,71,0.08);
 }
 .section + .section::before {
   content: '';
@@ -409,13 +409,13 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 4px;
   padding: 48px;
   position: relative;
-  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.06);
+  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(139,111,71,0.06);
 }
 .program-card::before {
   content: '';
   position: absolute;
   inset: 10px;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(139,111,71,0.12);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -423,7 +423,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 14px;
-  border: 0.5px solid rgba(201,168,76,0.06);
+  border: 0.5px solid rgba(139,111,71,0.06);
   border-radius: 1px;
   pointer-events: none;
 }
@@ -445,14 +445,14 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.5);
+  color: rgba(255,255,255,0.5);
 }
 
 .program-item {
   display: flex;
   gap: 24px;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid rgba(139,111,71,0.08);
 }
 .program-item:last-child { border-bottom: none; }
 .program-time {
@@ -472,7 +472,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .program-desc p {
   font-size: 16px;
-  color: rgba(245,240,232,0.6);
+  color: rgba(255,255,255,0.6);
   line-height: 1.6;
 }
 
@@ -480,8 +480,8 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   margin-top: 36px;
   padding: 24px;
-  background: rgba(201,168,76,0.04);
-  border: 1px solid rgba(201,168,76,0.12);
+  background: rgba(139,111,71,0.04);
+  border: 1px solid rgba(139,111,71,0.12);
   border-radius: 3px;
 }
 .dress-code-label {
@@ -490,7 +490,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.45);
+  color: rgba(255,255,255,0.45);
   margin-bottom: 6px;
 }
 .dress-code-value {
@@ -552,7 +552,7 @@ button { font-family: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   inset: 8px;
-  border: 1px solid rgba(201,168,76,0.2);
+  border: 1px solid rgba(139,111,71,0.2);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -561,7 +561,7 @@ button { font-family: inherit; cursor: pointer; }
   top: 16px;
   right: 16px;
   background: none;
-  border: 1px solid rgba(201,168,76,0.3);
+  border: 1px solid rgba(139,111,71,0.3);
   color: var(--gold);
   width: 36px;
   height: 36px;
@@ -591,7 +591,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 20px;
 }
 .modal-body p {
-  color: rgba(245,240,232,0.7);
+  color: rgba(255,255,255,0.7);
   margin-bottom: 16px;
 }
 
@@ -613,13 +613,13 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 600px;
   margin: 0 auto;
   position: relative;
-  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(201,168,76,0.06);
+  box-shadow: 0 4px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(139,111,71,0.06);
 }
 .rsvp-card::before {
   content: '';
   position: absolute;
   inset: 10px;
-  border: 1px solid rgba(201,168,76,0.1);
+  border: 1px solid rgba(139,111,71,0.1);
   border-radius: 2px;
   pointer-events: none;
 }
@@ -646,7 +646,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.5);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 8px;
 }
 .form-label .req { color: var(--gold); margin-left: 2px; }
@@ -655,7 +655,7 @@ button { font-family: inherit; cursor: pointer; }
 .form-select {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid rgba(201,168,76,0.2);
+  border: 1px solid rgba(139,111,71,0.2);
   border-radius: 3px;
   background: rgba(0,0,0,0.3);
   font-family: var(--font-body);
@@ -674,11 +674,11 @@ button { font-family: inherit; cursor: pointer; }
 .form-select:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  box-shadow: 0 0 0 3px rgba(139,111,71,0.1);
 }
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: rgba(245,240,232,0.25);
+  color: rgba(255,255,255,0.25);
 }
 .form-input.is-invalid,
 .form-textarea.is-invalid {
@@ -692,7 +692,7 @@ button { font-family: inherit; cursor: pointer; }
   display: none;
 }
 .form-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B6F47' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
@@ -706,13 +706,13 @@ button { font-family: inherit; cursor: pointer; }
 .attend-btn {
   flex: 1;
   padding: 14px 12px;
-  border: 1.5px solid rgba(201,168,76,0.2);
+  border: 1.5px solid rgba(139,111,71,0.2);
   border-radius: 3px;
   background: rgba(0,0,0,0.3);
   font-family: var(--font-display);
   font-size: 16px;
   letter-spacing: 0.04em;
-  color: rgba(245,240,232,0.5);
+  color: rgba(255,255,255,0.5);
   cursor: pointer;
   transition: all 0.25s;
   text-align: center;
@@ -720,7 +720,7 @@ button { font-family: inherit; cursor: pointer; }
 .attend-btn:hover { border-color: var(--gold); color: var(--ivory); }
 .attend-btn.sel-yes {
   border-color: var(--gold);
-  background: rgba(201,168,76,0.12);
+  background: rgba(139,111,71,0.12);
   color: var(--gold);
   font-weight: 600;
 }
@@ -734,7 +734,7 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   font-size: 14px;
   font-style: italic;
-  color: rgba(245,240,232,0.4);
+  color: rgba(255,255,255,0.4);
   margin-top: 24px;
   line-height: 1.6;
 }
@@ -790,7 +790,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 8px;
 }
 .success-screen p {
-  color: rgba(245,240,232,0.6);
+  color: rgba(255,255,255,0.6);
   font-style: italic;
 }
 .btn-another {
@@ -831,8 +831,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .travel-card {
   padding: 32px;
-  background: rgba(201,168,76,0.04);
-  border: 1px solid rgba(201,168,76,0.12);
+  background: rgba(139,111,71,0.04);
+  border: 1px solid rgba(139,111,71,0.12);
   border-radius: 4px;
 }
 .travel-card h4 {
@@ -844,7 +844,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .travel-card p,
 .travel-card li {
-  color: rgba(245,240,232,0.65);
+  color: rgba(255,255,255,0.65);
   font-size: 16px;
   line-height: 1.7;
 }
@@ -866,7 +866,7 @@ button { font-family: inherit; cursor: pointer; }
 .map-embed {
   width: 100%;
   height: 320px;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(139,111,71,0.15);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -888,10 +888,10 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0 auto;
 }
 .faq-item {
-  border-bottom: 1px solid rgba(201,168,76,0.12);
+  border-bottom: 1px solid rgba(139,111,71,0.12);
 }
 .faq-item:first-child {
-  border-top: 1px solid rgba(201,168,76,0.12);
+  border-top: 1px solid rgba(139,111,71,0.12);
 }
 .faq-question {
   width: 100%;
@@ -930,7 +930,7 @@ button { font-family: inherit; cursor: pointer; }
   padding-bottom: 20px;
 }
 .faq-answer p {
-  color: rgba(245,240,232,0.6);
+  color: rgba(255,255,255,0.6);
   font-size: 16px;
   line-height: 1.8;
 }
@@ -946,7 +946,7 @@ button { font-family: inherit; cursor: pointer; }
 .gifts-content p {
   font-size: 19px;
   font-style: italic;
-  color: rgba(245,240,232,0.7);
+  color: rgba(255,255,255,0.7);
   line-height: 1.8;
 }
 
@@ -957,7 +957,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 48px 24px;
   text-align: center;
   background: var(--black);
-  border-top: 1px solid rgba(201,168,76,0.08);
+  border-top: 1px solid rgba(139,111,71,0.08);
 }
 .footer-ornament {
   color: var(--gold);
@@ -970,7 +970,7 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-display);
   font-size: 16px;
   font-style: italic;
-  color: rgba(245,240,232,0.4);
+  color: rgba(255,255,255,0.4);
 }
 
 /* ═══════════════════════════════════════════════════════
