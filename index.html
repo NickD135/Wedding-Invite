@@ -816,6 +816,8 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (max-width: 520px) {
   .rsvp-card { padding: 28px 20px; }
+  .rsvp-card::before { inset: 6px; }
+  .attend-group { flex-direction: column; }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -969,6 +971,53 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 16px;
   font-style: italic;
   color: rgba(245,240,232,0.4);
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .section { padding: 64px 20px; }
+  .hero-bg::before { inset: 16px; }
+  .hero-bg::after { inset: 20px; }
+  .hero-content { padding: 32px 20px; }
+  .hero-date { font-size: 11px; letter-spacing: 0.2em; }
+  .countdown { gap: 16px; margin-top: 28px; }
+  .countdown-label { font-size: 9px; }
+  .section-title { margin-bottom: 8px; }
+  .section-ornament { margin-bottom: 32px; }
+  .program-card { padding: 32px 24px; }
+  .program-header h3 { font-size: 24px; }
+  .map-embed { height: 260px; }
+  .gifts-content p { font-size: 17px; }
+  .site-footer { padding: 36px 20px; }
+}
+
+@media (max-width: 400px) {
+  .section { padding: 48px 16px; }
+  .hero-bg::before { inset: 10px; }
+  .hero-bg::after { inset: 14px; }
+  .hero-content { padding: 24px 16px; }
+  .hero-date { font-size: 10px; letter-spacing: 0.15em; }
+  .countdown { gap: 12px; margin-top: 24px; }
+  .program-card { padding: 24px 16px; }
+  .program-card::before { inset: 4px; }
+  .program-card::after { inset: 8px; }
+  .program-time { font-size: 16px; min-width: auto; }
+  .program-desc h4 { font-size: 18px; }
+  .program-desc p { font-size: 15px; }
+  .dress-code { padding: 18px 16px; }
+  .dress-code-value { font-size: 19px; }
+  .rsvp-card { padding: 24px 16px; }
+  .rsvp-card::before { inset: 4px; }
+  .rsvp-deadline { font-size: 10px; letter-spacing: 0.15em; }
+  .travel-card { padding: 24px 16px; }
+  .map-embed { height: 220px; }
+  .faq-question span { font-size: 17px; }
+  .gifts-content p { font-size: 16px; }
+  .btn-submit { font-size: 11px; padding: 14px; }
+  .btn-another { padding: 12px 28px; font-size: 11px; }
+  .footer-text { font-size: 14px; }
 }
 </style>
 </head>
