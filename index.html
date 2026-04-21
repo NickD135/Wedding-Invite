@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nicholas &amp; Jodee — 11 July 2026</title>
+<title>Jodee &amp; Nicholas — 11 July 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -55,14 +55,6 @@ button { font-family: inherit; cursor: pointer; }
 /* ═══════════════════════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════════════════════ */
-@keyframes curtainLeft {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
-@keyframes curtainRight {
-  from { transform: translateX(0); }
-  to   { transform: translateX(100%); }
-}
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -234,58 +226,6 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
 }
 
-/* Curtain panels */
-.curtain-left,
-.curtain-right {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 5;
-}
-.curtain-left {
-  left: 0;
-  background: linear-gradient(135deg, #3a0f18 0%, #6B1E2E 30%, #4A1520 60%, #2a0b12 100%);
-  animation: curtainLeft 1.8s cubic-bezier(0.77, 0, 0.175, 1) 0.5s forwards;
-}
-.curtain-right {
-  right: 0;
-  background: linear-gradient(225deg, #3a0f18 0%, #6B1E2E 30%, #4A1520 60%, #2a0b12 100%);
-  animation: curtainRight 1.8s cubic-bezier(0.77, 0, 0.175, 1) 0.5s forwards;
-}
-/* Curtain fabric folds */
-.curtain-left::before,
-.curtain-right::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 100%;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0px,
-    rgba(0,0,0,0.15) 20px,
-    transparent 40px,
-    rgba(255,255,255,0.03) 60px,
-    transparent 80px
-  );
-}
-/* Gold curtain trim */
-.curtain-left::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 50%, var(--gold) 100%);
-}
-.curtain-right::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 50%, var(--gold) 100%);
-}
 
 /* Hero content */
 .hero-content {
@@ -294,7 +234,7 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   padding: 40px 24px;
   opacity: 0;
-  animation: fadeIn 1.5s ease 2s forwards;
+  animation: fadeIn 1.5s ease 0.3s forwards;
 }
 .hero-ornament {
   font-size: 20px;
@@ -372,7 +312,7 @@ button { font-family: inherit; cursor: pointer; }
   text-align: center;
   animation: float 2.5s ease-in-out infinite;
   opacity: 0;
-  animation: float 2.5s ease-in-out infinite, fadeIn 1s ease 3s forwards;
+  animation: float 2.5s ease-in-out infinite, fadeIn 1s ease 1s forwards;
 }
 .scroll-cue-text {
   font-family: var(--font-ui);
@@ -417,34 +357,6 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--gold-light);
 }
 
-/* ── Persistent stage curtain drapes (SVG-based) ── */
-.stage-drapes {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  overflow: hidden;
-}
-.drape-svg-left,
-.drape-svg-right {
-  position: absolute;
-  top: 0;
-  height: 100%;
-}
-.drape-svg-left {
-  left: 0;
-  width: 50px;
-}
-.drape-svg-right {
-  right: 0;
-  width: 50px;
-}
-
-@media (max-width: 768px) {
-  .drape-svg-left { width: 28px; }
-  .drape-svg-right { width: 28px; }
-}
-
 /* ── Section gold separators ── */
 .section + .section {
   border-top: 1px solid rgba(201,168,76,0.08);
@@ -486,95 +398,6 @@ button { font-family: inherit; cursor: pointer; }
 .gold-divider span {
   color: var(--gold);
   font-size: 14px;
-}
-
-/* ═══════════════════════════════════════════════════════
-   OUR STORY
-═══════════════════════════════════════════════════════ */
-.story-intro {
-  text-align: center;
-  font-size: 20px;
-  font-style: italic;
-  color: rgba(245,240,232,0.8);
-  max-width: 640px;
-  margin: 0 auto 60px;
-  line-height: 1.8;
-}
-
-.timeline {
-  position: relative;
-  padding-left: 40px;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 14px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--gold-muted), var(--gold-muted), transparent);
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 56px;
-}
-.timeline-item:last-child { margin-bottom: 0; }
-.timeline-dot {
-  position: absolute;
-  left: -33px;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  background: var(--black);
-}
-.timeline-year {
-  font-family: var(--font-ui);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.timeline-heading {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--ivory);
-  margin-bottom: 12px;
-}
-.timeline-text {
-  color: rgba(245,240,232,0.65);
-  font-size: 17px;
-  line-height: 1.8;
-}
-
-/* Photo gallery placeholders */
-.photo-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 60px;
-}
-.photo-slot {
-  aspect-ratio: 4/5;
-  background: rgba(201,168,76,0.06);
-  border: 1px solid rgba(201,168,76,0.12);
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(201,168,76,0.25);
-  font-family: var(--font-ui);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-@media (max-width: 560px) {
-  .photo-gallery { grid-template-columns: 1fr 1fr; }
-  .photo-gallery .photo-slot:nth-child(3) { grid-column: 1 / -1; aspect-ratio: 16/9; }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1000,7 +823,7 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ */
 .travel-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 32px;
   margin-bottom: 48px;
 }
@@ -1151,194 +974,20 @@ button { font-family: inherit; cursor: pointer; }
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════
-     PERSISTENT STAGE DRAPES
-═══════════════════════════════════════════════════════ -->
-<div class="stage-drapes">
-  <!-- ── Left curtain drape with rope tieback ── -->
-  <svg class="drape-svg-left" viewBox="0 0 50 1000" preserveAspectRatio="xMinYMin slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="curtain-l" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#6B1E2E"/>
-        <stop offset="40%" stop-color="#5a1828"/>
-        <stop offset="70%" stop-color="#7a2538"/>
-        <stop offset="100%" stop-color="#3a0f18"/>
-      </linearGradient>
-      <linearGradient id="curtain-depth-l" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#7a2538" stop-opacity="0.3"/>
-        <stop offset="40%" stop-color="#000" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#1a0808" stop-opacity="0.7"/>
-      </linearGradient>
-      <linearGradient id="rope-gold" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#8a6820"/>
-        <stop offset="25%" stop-color="#C9A84C"/>
-        <stop offset="50%" stop-color="#E8D48A"/>
-        <stop offset="75%" stop-color="#C9A84C"/>
-        <stop offset="100%" stop-color="#8a6820"/>
-      </linearGradient>
-      <linearGradient id="tassel-gold" x1="0.5" y1="0" x2="0.5" y2="1">
-        <stop offset="0%" stop-color="#D4BC6A"/>
-        <stop offset="100%" stop-color="#8a6820"/>
-      </linearGradient>
-      <filter id="gold-glow-l">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- Curtain fabric — narrow strip hugging the left edge -->
-    <path d="M0,0 L38,0 C36,30 32,80 28,140 C24,200 22,230 20,260
-             C19,280 20,290 22,300
-             C20,340 16,440 14,580 C12,720 10,880 8,1000
-             L0,1000 Z"
-          fill="url(#curtain-l)"/>
-
-    <!-- Fold highlights -->
-    <path d="M10,0 C11,60 12,140 13,220 C14,270 13,300 12,320
-             C11,400 10,560 9,750 C8,880 8,950 7,1000"
-          stroke="rgba(180,100,120,0.18)" stroke-width="5" fill="none"/>
-    <path d="M22,0 C23,40 25,100 26,170 C27,220 24,260 22,280
-             C21,300 22,320 20,360 C18,460 16,600 14,1000"
-          stroke="rgba(100,40,50,0.2)" stroke-width="3" fill="none"/>
-
-    <!-- Depth overlay -->
-    <path d="M0,0 L38,0 C36,30 32,80 28,140 C24,200 22,230 20,260
-             C19,280 20,290 22,300
-             C20,340 16,440 14,580 C12,720 10,880 8,1000
-             L0,1000 Z"
-          fill="url(#curtain-depth-l)"/>
-
-    <!-- Gold inner edge trim -->
-    <path d="M38,0 C36,30 32,80 28,140 C24,200 22,230 20,260
-             C19,280 20,290 22,300
-             C20,340 16,440 14,580 C12,720 10,880 8,1000"
-          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.25"/>
-
-    <!-- Gold rope tieback -->
-    <g filter="url(#gold-glow-l)">
-      <!-- Rope arc -->
-      <path d="M0,270 C8,268 14,270 20,276 C24,282 22,290 18,294"
-            stroke="url(#rope-gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <!-- Second strand -->
-      <path d="M0,274 C6,273 12,276 18,282 C22,288 20,296 16,298"
-            stroke="url(#rope-gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <!-- Braid detail -->
-      <path d="M3,270 C5,269 7,270 9,271" stroke="#E8D48A" stroke-width="1" fill="none" opacity="0.5"/>
-      <path d="M9,271 C11,272 13,274 15,276" stroke="#E8D48A" stroke-width="1" fill="none" opacity="0.4"/>
-
-      <!-- Medallion knot -->
-      <circle cx="18" cy="296" r="6" fill="url(#rope-gold)" stroke="#8a6820" stroke-width="0.8"/>
-      <circle cx="18" cy="296" r="3.5" fill="none" stroke="#E8D48A" stroke-width="0.6" opacity="0.5"/>
-      <circle cx="18" cy="296" r="1.5" fill="#E8D48A" opacity="0.4"/>
-
-      <!-- Tassel strands -->
-      <path d="M15,302 C14,330 13,370 12,420" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <path d="M18,302 C18,335 17,375 17,430" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
-      <path d="M21,302 C22,328 22,368 23,415" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <!-- Fine threads -->
-      <path d="M13,302 C12,340 11,390 10,440" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-      <path d="M23,302 C24,335 24,380 25,430" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-      <!-- Tassel tip -->
-      <ellipse cx="17" cy="436" rx="8" ry="3" fill="url(#tassel-gold)" opacity="0.5"/>
-    </g>
-  </svg>
-
-  <!-- ── Right curtain drape (mirrored) ── -->
-  <svg class="drape-svg-right" viewBox="0 0 50 1000" preserveAspectRatio="xMaxYMin slice" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="curtain-r" x1="1" y1="0" x2="0" y2="0">
-        <stop offset="0%" stop-color="#6B1E2E"/>
-        <stop offset="40%" stop-color="#5a1828"/>
-        <stop offset="70%" stop-color="#7a2538"/>
-        <stop offset="100%" stop-color="#3a0f18"/>
-      </linearGradient>
-      <linearGradient id="curtain-depth-r" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#7a2538" stop-opacity="0.3"/>
-        <stop offset="40%" stop-color="#000" stop-opacity="0"/>
-        <stop offset="100%" stop-color="#1a0808" stop-opacity="0.7"/>
-      </linearGradient>
-      <linearGradient id="rope-gold-r" x1="1" y1="0" x2="0" y2="0">
-        <stop offset="0%" stop-color="#8a6820"/>
-        <stop offset="25%" stop-color="#C9A84C"/>
-        <stop offset="50%" stop-color="#E8D48A"/>
-        <stop offset="75%" stop-color="#C9A84C"/>
-        <stop offset="100%" stop-color="#8a6820"/>
-      </linearGradient>
-      <filter id="gold-glow-r">
-        <feGaussianBlur stdDeviation="2" result="blur"/>
-        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-
-    <!-- Curtain fabric — narrow strip hugging the right edge -->
-    <path d="M50,0 L12,0 C14,30 18,80 22,140 C26,200 28,230 30,260
-             C31,280 30,290 28,300
-             C30,340 34,440 36,580 C38,720 40,880 42,1000
-             L50,1000 Z"
-          fill="url(#curtain-r)"/>
-
-    <!-- Fold highlights -->
-    <path d="M40,0 C39,60 38,140 37,220 C36,270 37,300 38,320
-             C39,400 40,560 41,750 C42,880 42,950 43,1000"
-          stroke="rgba(180,100,120,0.18)" stroke-width="5" fill="none"/>
-    <path d="M28,0 C27,40 25,100 24,170 C23,220 26,260 28,280
-             C29,300 28,320 30,360 C32,460 34,600 36,1000"
-          stroke="rgba(100,40,50,0.2)" stroke-width="3" fill="none"/>
-
-    <!-- Depth overlay -->
-    <path d="M50,0 L12,0 C14,30 18,80 22,140 C26,200 28,230 30,260
-             C31,280 30,290 28,300
-             C30,340 34,440 36,580 C38,720 40,880 42,1000
-             L50,1000 Z"
-          fill="url(#curtain-depth-r)"/>
-
-    <!-- Gold inner edge trim -->
-    <path d="M12,0 C14,30 18,80 22,140 C26,200 28,230 30,260
-             C31,280 30,290 28,300
-             C30,340 34,440 36,580 C38,720 40,880 42,1000"
-          stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.25"/>
-
-    <!-- Gold rope tieback -->
-    <g filter="url(#gold-glow-r)">
-      <path d="M50,270 C42,268 36,270 30,276 C26,282 28,290 32,294"
-            stroke="url(#rope-gold-r)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M50,274 C44,273 38,276 32,282 C28,288 30,296 34,298"
-            stroke="url(#rope-gold-r)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
-      <path d="M47,270 C45,269 43,270 41,271" stroke="#E8D48A" stroke-width="1" fill="none" opacity="0.5"/>
-      <path d="M41,271 C39,272 37,274 35,276" stroke="#E8D48A" stroke-width="1" fill="none" opacity="0.4"/>
-
-      <!-- Medallion knot -->
-      <circle cx="32" cy="296" r="6" fill="url(#rope-gold-r)" stroke="#8a6820" stroke-width="0.8"/>
-      <circle cx="32" cy="296" r="3.5" fill="none" stroke="#E8D48A" stroke-width="0.6" opacity="0.5"/>
-      <circle cx="32" cy="296" r="1.5" fill="#E8D48A" opacity="0.4"/>
-
-      <!-- Tassel strands -->
-      <path d="M35,302 C36,330 37,370 38,420" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <path d="M32,302 C32,335 33,375 33,430" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
-      <path d="M29,302 C28,328 28,368 27,415" stroke="url(#tassel-gold)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <path d="M37,302 C38,340 39,390 40,440" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-      <path d="M27,302 C26,335 26,380 25,430" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.4"/>
-      <!-- Tassel tip -->
-      <ellipse cx="33" cy="436" rx="8" ry="3" fill="url(#tassel-gold)" opacity="0.5"/>
-    </g>
-  </svg>
-
-</div>
 
 <!-- ═══════════════════════════════════════════════════════
      NAVIGATION
 ═══════════════════════════════════════════════════════ -->
 <nav class="nav" id="main-nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-brand">N &amp; J</a>
+    <a href="#hero" class="nav-brand">J &amp; N</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#story">Our Story</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#rsvp">RSVP</a></li>
-      <li><a href="#travel">Travel &amp; Stay</a></li>
+      <li><a href="#travel">Travel</a></li>
       <li><a href="#faqs">FAQs</a></li>
       <li><a href="#gifts">Gifts</a></li>
     </ul>
@@ -1351,17 +1000,13 @@ button { font-family: inherit; cursor: pointer; }
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
 
-  <!-- Curtains -->
-  <div class="curtain-left"></div>
-  <div class="curtain-right"></div>
-
   <!-- Content -->
   <div class="hero-content">
     <div class="hero-ornament">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
     <h1 class="hero-names">
-      <em>Nicholas</em>
-      <span class="hero-ampersand">&amp;</span>
       <em>Jodee</em>
+      <span class="hero-ampersand">&amp;</span>
+      <em>Nicholas</em>
     </h1>
     <p class="hero-date">Saturday, 11 July 2026 &middot; QT Hotel Sydney</p>
 
@@ -1391,56 +1036,6 @@ button { font-family: inherit; cursor: pointer; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     OUR STORY
-═══════════════════════════════════════════════════════ -->
-<section class="section section-dark" id="story">
-  <div class="section-inner">
-    <h2 class="section-title reveal">Our Story</h2>
-    <div class="section-ornament reveal">&#10022; &nbsp; &#9825; &nbsp; &#10022;</div>
-
-    <p class="story-intro reveal">
-      Some love stories begin with a grand gesture. Ours started with a smile,
-      a conversation that never quite ended, and a feeling that everything
-      was about to change.
-    </p>
-
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">How We Met</div>
-        <h3 class="timeline-heading">The Beginning</h3>
-        <p class="timeline-text">
-          <!-- TODO: Replace with your real story -->
-          It was one of those ordinary days that turned out to be anything but.
-          From the moment we met, there was a spark — a connection that felt both
-          brand new and somehow familiar. What started as easy conversation quickly
-          became the kind of friendship that keeps you up past midnight, sharing
-          dreams and laughing at the smallest things.
-        </p>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-year">The Proposal</div>
-        <h3 class="timeline-heading">The Question</h3>
-        <p class="timeline-text">
-          <!-- TODO: Replace with your real proposal story -->
-          After years of building a life together — the adventures, the quiet
-          mornings, the inside jokes that only we understand — there was only one
-          question left to ask. With a heart full of certainty and nerves to match,
-          the moment arrived. And the answer was everything.
-        </p>
-      </div>
-    </div>
-
-    <div class="photo-gallery reveal">
-      <div class="photo-slot">Photo 1</div>
-      <div class="photo-slot">Photo 2</div>
-      <div class="photo-slot">Photo 3</div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════
      DETAILS
@@ -1460,7 +1055,7 @@ button { font-family: inherit; cursor: pointer; }
         <div class="program-time">5:45 pm</div>
         <div class="program-desc">
           <h4>Guests Arrive</h4>
-          <p>Welcome to the QT Hotel Sydney. You will be guided to the ceremony space on arrival.</p>
+          <p>Arrive at the QT Hotel Sydney and make your way to Reception on Level 1, where you will be guided to the event rooms.</p>
         </div>
       </div>
 
@@ -1468,7 +1063,7 @@ button { font-family: inherit; cursor: pointer; }
         <div class="program-time">6:15 pm</div>
         <div class="program-desc">
           <h4>Ceremony</h4>
-          <p>QT Hotel Sydney, Level 1. Please be seated by 6:10 pm.</p>
+          <p>Please be seated by 6:10 pm.</p>
         </div>
       </div>
 
@@ -1505,7 +1100,7 @@ button { font-family: inherit; cursor: pointer; }
       -->
       <p>The formal invitation will be available here soon.</p>
       <p style="margin-top: 24px; font-size: 15px; color: rgba(245,240,232,0.5);">
-        Nicholas &amp; Jodee<br>
+        Jodee &amp; Nicholas<br>
         Saturday, 11 July 2026<br>
         QT Hotel Sydney
       </p>
@@ -1529,12 +1124,6 @@ button { font-family: inherit; cursor: pointer; }
           <label class="form-label" for="rsvp-name">Full Name <span class="req">*</span></label>
           <input type="text" class="form-input" id="rsvp-name" placeholder="Your full name" required>
           <div class="form-error" id="err-name">Please enter your full name.</div>
-        </div>
-
-        <div class="form-field">
-          <label class="form-label" for="rsvp-email">Email Address <span class="req">*</span></label>
-          <input type="email" class="form-input" id="rsvp-email" placeholder="your@email.com" required>
-          <div class="form-error" id="err-email">Please enter a valid email address.</div>
         </div>
 
         <div class="form-field">
@@ -1563,7 +1152,7 @@ button { font-family: inherit; cursor: pointer; }
         <span class="success-icon">&#127800;</span>
         <h3>Thank You!</h3>
         <p>Your RSVP has been received.<br>We can't wait to celebrate with you.</p>
-        <p style="margin-top: 16px; font-size: 15px; color: var(--gold);">&#9825; Nicholas &amp; Jodee &#9825;</p>
+        <p style="margin-top: 16px; font-size: 15px; color: var(--gold);">&#9825; Jodee &amp; Nicholas &#9825;</p>
         <button type="button" class="btn-another" id="btn-another-success">RSVP for Another Guest</button>
       </div>
 
@@ -1580,7 +1169,7 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ -->
 <section class="section section-dark" id="travel">
   <div class="section-inner">
-    <h2 class="section-title reveal">Travel &amp; Stay</h2>
+    <h2 class="section-title reveal">Travel</h2>
     <div class="section-ornament reveal">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
 
     <div class="travel-grid">
@@ -1594,24 +1183,11 @@ button { font-family: inherit; cursor: pointer; }
         </ul>
       </div>
 
-      <div class="travel-card reveal">
-        <h4>Where to Stay</h4>
-        <p>
-          We recommend staying at the <strong style="color: var(--gold);">QT Hotel Sydney</strong>
-          for the ultimate experience. Contact the hotel directly for room availability and rates.
-        </p>
-        <p style="margin-top: 12px;">
-          <!-- TODO: Replace with actual booking link -->
-          <a href="https://www.qthotels.com/sydney/" target="_blank" rel="noopener">
-            Book at QT Hotel Sydney &rarr;
-          </a>
-        </p>
-      </div>
     </div>
 
     <div class="map-embed reveal">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.8!2d151.205!3d-33.871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae3f3b312871%3A0x5017d681632bfc0!2sQT%20Sydney!5e0!3m2!1sen!2sau!4v1"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.8!2d151.2073!3d-33.8711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae401c817c39%3A0x684a59b0e5dce380!2sQT%20Sydney!5e0!3m2!1sen!2sau!4v1"
         allowfullscreen
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
@@ -1694,8 +1270,8 @@ button { font-family: inherit; cursor: pointer; }
     <div class="gifts-content reveal">
       <p>
         Your presence at our wedding is the greatest gift of all.
-        If you wish to honour us with a gift, a wishing well will
-        be available on the night.
+        Should you still wish to help us celebrate with a gift, a wishing well will
+        be available on the day.
       </p>
       <!-- TODO: If you'd like to add a registry link, place it here:
            <p style="margin-top: 24px;">
@@ -1711,7 +1287,7 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ -->
 <footer class="site-footer">
   <div class="footer-ornament">&#10022; &nbsp; &#9825; &nbsp; &#10022;</div>
-  <p class="footer-text">Nicholas &amp; Jodee &middot; 11 July 2026 &middot; QT Hotel Sydney</p>
+  <p class="footer-text">Jodee &amp; Nicholas &middot; 11 July 2026 &middot; QT Hotel Sydney</p>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1819,7 +1395,6 @@ button { font-family: inherit; cursor: pointer; }
     const data = {
       timestamp: new Date().toISOString(),
       name: document.getElementById('rsvp-name').value.trim(),
-      email: document.getElementById('rsvp-email').value.trim(),
       attending: attending,
       dietary: document.getElementById('rsvp-dietary').value.trim(),
       song: document.getElementById('rsvp-song').value.trim(),
@@ -1869,7 +1444,6 @@ button { font-family: inherit; cursor: pointer; }
   function validate() {
     let ok = true;
     const name = document.getElementById('rsvp-name');
-    const email = document.getElementById('rsvp-email');
 
     if (!name.value.trim()) {
       name.classList.add('is-invalid');
@@ -1878,15 +1452,6 @@ button { font-family: inherit; cursor: pointer; }
     } else {
       name.classList.remove('is-invalid');
       document.getElementById('err-name').style.display = 'none';
-    }
-
-    if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-      email.classList.add('is-invalid');
-      document.getElementById('err-email').style.display = 'block';
-      ok = false;
-    } else {
-      email.classList.remove('is-invalid');
-      document.getElementById('err-email').style.display = 'none';
     }
 
     if (!attending) {
